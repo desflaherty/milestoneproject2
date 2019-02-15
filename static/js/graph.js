@@ -2,7 +2,7 @@
 //when data is downloaded call the makeGraphs function
 
 queue()
-    .defer(d3.csv, "data/2013-2015-dfb-fire.csv")
+    .defer(d3.csv, "data/firedata.csv")
     .await(makeGraphs);
     
 //data will be passed into variable fireData by queue.min.js  
@@ -21,10 +21,13 @@ queue()
         */
         
         
-        show_fire_by_area(ndx);
+       show_fire_by_area(ndx);
        // show_fire_by_date(ndx);
         show_area_selector(ndx);
         show_year_selector(ndx);
+        show_type_selector(ndx);
+        show_fire_by_description(ndx);
+        
         
         dc.renderAll(); //call to render dimensional charting
         
@@ -43,6 +46,15 @@ queue()
     var dim = ndx.dimension(dc.pluck('Date'));
     var group = dim.group();
         dc.selectMenu("#year-selector")
+        .dimension(dim)
+        .group(group);
+        
+   }
+   
+    function show_type_selector(ndx){
+    var dim = ndx.dimension(dc.pluck('Desc_group'));
+    var group = dim.group();
+        dc.selectMenu("#type-selector")
         .dimension(dim)
         .group(group);
         
@@ -91,5 +103,19 @@ queue()
 }
 
 
-
-
+function show_fire_by_description(ndx) {
+    var dim = ndx.dimension(dc.pluck('Desc_group_type'));
+    var group = dim.group();
+    
+         dc.rowChart("#Fire-by-description")
+        .width(1100)
+        .height(300)
+        .margins({top: 10, right: 50, bottom: 30, left: 50})
+        .dimension(dim)
+        .group(group)
+        .transitionDuration(500)//how quickly chart animates when filtered
+        .cap(10)
+       .othersGrouper(false);
+       
+      
+}
