@@ -140,9 +140,9 @@ function show_fire_by_area10(ndx) {
 
      function show_fire_by_date(ndx) {
         var date_dim = ndx.dimension(dc.pluck('Date'));
-        var total_spend_per_date = date_dim.group().reduceSum(dc.pluck('Description'));
-        var minDate = date_dim.bottom(1)[0].date;
-        var maxDate = date_dim.top(1)[0].date;
+        var total_spend_per_date = date_dim.group().reduceCount(dc.pluck('Description'));
+        var minDate = date_dim.bottom(1)[0].Date;
+        var maxDate = date_dim.top(1)[0].Date;
         dc.lineChart("#Fire-by-date")
             .width(1000)
             .height(300)
@@ -151,7 +151,7 @@ function show_fire_by_area10(ndx) {
             .group(total_spend_per_date)
             .transitionDuration(500)
             .x(d3.time.scale().domain([minDate,maxDate]))
-            .xAxisLabel("Month")
+            .xAxisLabel("Year")
             .yAxis().ticks(4);
        
        
