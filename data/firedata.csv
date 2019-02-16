@@ -1,4 +1,4 @@
-﻿Date,Station Area,Description,Desc_group,Desc_group_type,TOC,ORD,MOB,IA,MAV,CD
+Date,Station Area,Description,Desc_group,Desc_group_type,TOC,ORD,MOB,IA,MAV,CD
 31-12-15,Blanchardstown,Fire SMALL,Fire,Small Fire,21:26:50,21:29:28,21:30:53,,21:42:32,21:47:13
 31-12-15,Tallaght,S/S RTA,Special Service,Road Traffic Accident,18:47:54,18:49:35,18:49:40,18:49:41,19:13:51,19:24:15
 31-12-15,Blanchardstown,S/S MKSCSF,Special Service,Make Scene Safe,14:22:41,14:28:29,14:29:32,14:34:52,14:45:12,14:50:13
@@ -7175,7 +7175,6 @@
 22-06-15,Swords,Fire SMALL,Fire,Small Fire,21:28:10,21:32:17,21:38:11,21:48:43,21:59:19,22:04:33
 22-06-15,Finglas,Fire SMALL,Fire,Small Fire,21:33:15,21:36:07,21:37:35,21:50:05,21:50:08,21:50:30
 22-06-15,Dun Laoghaire,Fire SMALL,Fire,Small Fire,22:13:02,22:15:46,22:16:49,22:21:03,22:50:58,22:59:44
-22-06-15,Dunshaughlin,S/S RTA,Special Service,Road Traffic Accident,11:08:10,11:12:09,11:14:09,11:27:20,11:31:01,11:44:05
 22-06-15,Tallaght,S/S OTHER,Special Service,Not Specified,23:03:42,23:05:33,23:07:21,,23:10:28,23:14:56
 22-06-15,North Strand,S/S OTHER,Special Service,Not Specified,23:34:17,23:35:39,23:37:15,23:40:30,23:46:08,23:46:44
 22-06-15,Kilbarrack,Fire INDUST,Fire,Industrial,0:54:23,0:56:23,0:58:21,,0:59:46,1:02:12
@@ -11922,7 +11921,6 @@
 14-01-15,Kilbarrack,Fire CHIMNEY,Fire,Chimney,0:51:39,0:52:28,0:54:45,1:02:51,2:13:04,2:18:52
 14-01-15,Kilbarrack,Fire CHIMNEY,Fire,Chimney,18:25:57,18:26:44,18:27:46,18:31:57,18:57:53,19:02:24
 14-01-15,North Strand,Fire CHIMNEY,Fire,Chimney,22:36:01,22:36:53,22:39:14,22:43:40,23:17:23,23:17:52
-14-01-15,Dunshaughlin,Fire CAR,Fire,Car Fire,17:26:22,17:28:59,17:30:37,,17:33:22,17:46:24
 14-01-15,Rathfarnham,S/S ANRES,Special Service,Animal Rescue,12:42:39,12:43:38,,,,12:45:19
 14-01-15,Donnybrook,S/S AMBASS,Special Service,Ambulance Assist,6:27:09,6:28:53,6:30:34,6:35:56,6:52:40,6:59:41
 14-01-15,Donnybrook,S/S AMBASS,Special Service,Ambulance Assist,7:04:53,7:05:31,7:07:53,7:14:11,7:15:41,7:20:30
@@ -34114,7 +34112,6 @@
 21-05-13,Rathfarnham,Fire FOREST,Fire,Forest,21:58:09,22:01:05,22:02:51,,22:41:45,22:48:20
 21-05-13,Tallaght,S/S FLOOD,Special Service,Flooding,19:32:41,19:36:16,19:37:56,,20:05:14,20:25:13
 21-05-13,Tallaght,Fire FIRE,Fire,Not Specified,21:27:26,21:29:01,21:30:52,21:37:20,21:48:49,21:57:45
-21-05-13,MH14,S/S ELEC,Special Service,Electrical,23:24:43,23:26:16,23:27:45,23:36:14,23:41:27,23:54:24
 21-05-13,Dun Laoghaire,Fire DOMESTIC,Fire,Domestic Fire,0:12:32,0:13:50,0:15:49,0:22:16,0:38:55,0:51:52
 21-05-13,Tallaght,Fire DOMESTIC,Fire,Domestic Fire,14:45:04,14:46:24,14:47:24,14:56:36,16:53:51,17:07:28
 21-05-13,Rathfarnham,Fire CHIMNEY,Fire,Chimney,19:02:22,19:04:18,19:06:00,19:13:15,19:45:31,19:53:09

@@ -16,18 +16,24 @@
 
   <body>
     <h1>Fire Incident Activity in the Dublin area</h1>
+    <div id = "total_incidents" class = "dc-data-count" style = "float:right">
+               <span class = "filter-count"></span> selected out of <span
+                  class = "total-count"></span> | <a href = "javascript:dc.filterAll();
+                  dc.renderAll();">Reset All</a>
+    </div>
+    
+    
     <div id="area-selector"></div>
     <div id="type-selector"></div>
     <div id="year-selector"></div>
-    
-    <div id="Fire-by-date"></div>
     <div id="Fire-by-area"></div>
     <div id="Fire-by-description"></div>
+    <div id="Fire-by-area10"></div>
+    <div id="Fire-by-date"></div>
     
     
     
-    
-     <script type="text/javascript" src="static/js/d3.min.js"></script>
+    <script type="text/javascript" src="static/js/d3.min.js"></script>
     <script type="text/javascript" src="static/js/crossfilter.min.js"></script>
     <script type="text/javascript" src="static/js/dc.min.js"></script>
     <script type="text/javascript" src="static/js/queue.min.js"></script>

@@ -43,3 +43,9 @@
 .section-paragraph {
 	line-height: 1.2;
 }
+
+/* Black text on chart to display full label*/
+
+.dc-chart g.row text {
+      fill: black;
+    }
