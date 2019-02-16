@@ -10,15 +10,24 @@ queue()
 
 
 
-    function makeGraphs(error, fireData) {
-    var ndx =crossfilter(fireData);
+function makeGraphs(error, fireData) {
+var ndx =crossfilter(fireData);
+ 
+//converting from a string into a date format, and formatting as year only
+//to display in select menu drop down list as 2013,2014,2015
+
+       var parseDate = d3.time.format("%d-%m-%y").parse;
+       var format = d3.time.format("%Y");
+       
+       
+       fireData.forEach(function(d) {
+        d.Date = format(parseDate(d.Date));
+         });
+     
     
     
-    var parseDate = d3.time.format("%d/%m/%y").parse;
-        fireData.forEach(function(d){
-        d.Date = parseDate(d.Date);
-        });  
-        
+
+      
      
         
         var countChart = dc.dataCount("#total_incidents");
@@ -129,22 +138,22 @@ function show_fire_by_area10(ndx) {
 }
 
 
- function show_fire_by_date(ndx) {
-       var date_dim = ndx.dimension(dc.pluck('Date'));
-        var total_incidents_per_month = date_dim.group().reduceSum(dc.pluck('Description'));
+     function show_fire_by_date(ndx) {
+        var date_dim = ndx.dimension(dc.pluck('Date'));
+        var total_spend_per_date = date_dim.group().reduceSum(dc.pluck('Description'));
         var minDate = date_dim.bottom(1)[0].date;
         var maxDate = date_dim.top(1)[0].date;
-        
-             dc.lineChart("#Fire-by-date")
+        dc.lineChart("#Fire-by-date")
             .width(1000)
             .height(300)
             .margins({top: 10, right: 50, bottom: 30, left: 50})
             .dimension(date_dim)
-            .group(total_incidents_per_month)
+            .group(total_spend_per_date)
             .transitionDuration(500)
             .x(d3.time.scale().domain([minDate,maxDate]))
             .xAxisLabel("Month")
             .yAxis().ticks(4);
+       
        
    }
    
