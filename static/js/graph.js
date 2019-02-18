@@ -17,19 +17,16 @@ var ndx =crossfilter(fireData);
 //to display in select menu drop down list as 2013,2014,2015
 
        var parseDate = d3.time.format("%d-%m-%y").parse;
-       var dateformat = d3.time.format("%Y");
+       var parseTime = d3.time.format("%H:%M %p").parse;
        
-      
        
-       //  fireData.forEach(function(d) {
-         //d.Date = dateformat(parseDate(d.Date));
-         //});
-     
     
            fireData.forEach(function(d){
             d.Incident_Counter = parseInt(d.Incident_Counter); // parsing the incident count key from text to a number.
             d.Date = parseDate(d.Date);
+            d.TOC = parseTime(d.TOC);
         });
+    
     
       
     
@@ -54,7 +51,7 @@ var ndx =crossfilter(fireData);
         show_type_selector(ndx);
         show_fire_by_description(ndx);
         show_fire_by_area10(ndx);
-        
+        show_fire_by_time(ndx);
         
         
         dc.renderAll(); //call to render dimensional charting
@@ -75,12 +72,22 @@ var ndx =crossfilter(fireData);
        .group(group);
    }
    
-    function show_year_selector(ndx){
+    function show_year_selector(ndx)
+    {
     var dim = ndx.dimension(dc.pluck('Date'));
+   
+   var year = d3.time.format("%Y");
+      //    fireData.forEach(function(d) {
+    //     d.Date = year(parseDate(d.Date));
+      //   });
+   
+   
     var group = dim.group();
         dc.selectMenu("#year-selector")
         .dimension(dim)
         .group(group);
+        
+       
         
    }
    
@@ -219,20 +226,33 @@ function show_fire_by_area10(ndx) {
                     .colors('orange')
                     .group(serviceByMonth, 'Service Call Outs'),
                
-            ])
+            ]);
+        
+     }
+     
+        function show_fire_by_time(ndx) {
             
-            
+        var time_dim = ndx.dimension(dc.pluck('TOC'));
+        var total_count_per_time = time_dim.group().reduceSum(dc.pluck('Incident_Counter'));
        
+      // let hour = fireData.dimension((d) => d.date.getHours() + d.date.getMinutes() / 60)
+       //let hours = hour.group(Math.floor)   
        
+       let hourChart = dc.barChart('#hour-chart')
+        hourChart
+        .width(350)
+        .height(150)
+        //.dimension(hour)
+        //.group(hours)
+        .dimension(time_dim)
+        .group(total_count_per_time)
+        .x(d3.scale.linear()
+         .domain([0, 23])
+         .rangeRound([0, 10 * 24]))
+        .controlsUseVisibility(true);
+        hourChart.yAxis().tickFormat(d3.format('s'));
        
+         }
+        
        
-   }
-   
-   
-   
-         
-
-  
-   
-   
-   
+        
