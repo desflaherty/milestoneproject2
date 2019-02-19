@@ -2,7 +2,7 @@
 //when data is downloaded call the makeGraphs function
 
 queue()
-    .defer(d3.csv, "data/firedataDBF.csv")
+    .defer(d3.csv, "data/firedata.csv")
     .await(makeGraphs);
     
 //data will be passed into variable fireData by queue.min.js  
@@ -64,7 +64,7 @@ var ndx =crossfilter(fireData);
    
    
    function show_area_selector(ndx){
-    var dim = ndx.dimension(dc.pluck('Station Area'));
+    var dim = ndx.dimension(dc.pluck('Station_Area'));
     var group = dim.group();
     
         dc.selectMenu("#area-selector")
@@ -80,6 +80,22 @@ var ndx =crossfilter(fireData);
       //    fireData.forEach(function(d) {
     //     d.Date = year(parseDate(d.Date));
       //   });
+   
+   
+  // facts.forEach(function(d) {
+  //if (d.types == 2) {
+    // d._type = "Type 2";
+  //} else if (d.types == 3) {
+    // d._type = "Type 3";
+  //} else {
+    // d._type = "Other";
+ // }
+//});
+
+//var types = facts.dimension(dc.pluck('_type'))
+   
+   
+   
    
    
     var group = dim.group();
@@ -107,13 +123,9 @@ var ndx =crossfilter(fireData);
     
 
     function show_fire_by_area(ndx) {
-    
-    var name_dim = ndx.dimension(dc.pluck('Station Area'));
+    var name_dim = ndx.dimension(dc.pluck('Station_Area'));
     var group = name_dim.group();
-    
-       
-    
-
+  
         dc.barChart("#Fire-by-area")
         .width(1100)
         .height(300)
@@ -133,20 +145,35 @@ function show_fire_by_description(ndx) {
     var dim = ndx.dimension(dc.pluck('Desc_group_type'));
     var group = dim.group();
     
+    //creating a fake filtered group to exlude incidents in the dataset that have not been entered with a type of incident
+    var filtered_group = remove_not_specified(group)
+    function remove_not_specified(Desc_group_type) {
+    return {
+        all:function () {
+            return Desc_group_type.all().filter(function(d) {
+                return d.key !="SS - Not Specified" && d.key !="Fire - Not Specified"; //removes 'Not Specified'
+            });
+        }
+    };
+}
+    
          dc.rowChart("#Fire-by-description")
         .width(550)
         .height(300)
         .margins({top: 10, right: 50, bottom: 30, left: 50})
         .dimension(dim)
-        .group(group)
+        .group(filtered_group)// passing in filtered group
         .transitionDuration(500)//how quickly chart animates when filtered
         .cap(10) //limit to top 10 records
-       .othersGrouper(false) // exclude grouped 'others'
+        .othersGrouper(false) // exclude grouped 'others'
+       
 }
 
 function show_fire_by_area10(ndx) {
-    var dim = ndx.dimension(dc.pluck('Station Area'));
+    var dim = ndx.dimension(dc.pluck('Station_Area'));
     var group = dim.group();
+    
+
     
          dc.rowChart("#Fire-by-area10")
         .width(550)
