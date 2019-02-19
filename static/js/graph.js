@@ -17,14 +17,14 @@ var ndx =crossfilter(fireData);
 //to display in select menu drop down list as 2013,2014,2015
 
        var parseDate = d3.time.format("%d-%m-%y").parse;
-       var parseTime = d3.time.format("%H:%M %p").parse;
+     //  var parseTime = d3.time.format("%H:%M %p").parse;
        
        
     
            fireData.forEach(function(d){
             d.Incident_Counter = parseInt(d.Incident_Counter); // parsing the incident count key from text to a number.
             d.Date = parseDate(d.Date);
-            d.TOC = parseTime(d.TOC);
+          //  d.TOC = parseTime(d.TOC);
         });
     
     
@@ -51,8 +51,10 @@ var ndx =crossfilter(fireData);
         show_type_selector(ndx);
         show_fire_by_description(ndx);
         show_fire_by_area10(ndx);
-        show_fire_by_time(ndx);
-        
+       // show_fire_by_time(ndx);
+        //show_fire_by_day(ndx);
+         show_percentage_Incidents(ndx, "Fri", "#percentFri");
+   
         
         dc.renderAll(); //call to render dimensional charting
         
@@ -257,19 +259,24 @@ function show_fire_by_area10(ndx) {
         
      }
      
+     
+     /*
         function show_fire_by_time(ndx) {
-            
         var time_dim = ndx.dimension(dc.pluck('TOC'));
         var total_count_per_time = time_dim.group().reduceSum(dc.pluck('Incident_Counter'));
        
-      // let hour = fireData.dimension((d) => d.date.getHours() + d.date.getMinutes() / 60)
-       //let hours = hour.group(Math.floor)   
+    // var hours = ndx.dimension(function(d){
+        //     return d3.time.hour(timeFormat.parse(d.TOC));
+        // });
+        // var totalByHour = hours.group().reduceSum(function(d){
+        //                         return d.Incident_counter;
+        //                     });   
        
-       let hourChart = dc.barChart('#hour-chart')
+       var hourChart = dc.barChart('#hour-chart')
         hourChart
-        .width(350)
-        .height(150)
-        //.dimension(hour)
+        .width(550)
+        .height(300)
+       // .dimension(hour)
         //.group(hours)
         .dimension(time_dim)
         .group(total_count_per_time)
@@ -280,6 +287,51 @@ function show_fire_by_area10(ndx) {
         hourChart.yAxis().tickFormat(d3.format('s'));
        
          }
+        */
         
+  
+    
        
+     function show_percentage_Incidents(ndx, day, dayOfPercentage) {
+
+    var dayFormat = d3.time.format("%a");
+    var percentage = ndx.groupAll().reduce(
+
+        function(p, v) {
+            p.totalIncidentCount += v.Incident_Counter; 
+            if (dayFormat(v.Date) === day) { 
+                p.dayIncidentCount += v.Incident_Counter; 
+            }
+            return p;
+        },
+        function(p, v) {
+            p.totalIncidentCount -= v.Incident_Counter;
+            if (dayFormat(v.Date) === day) {
+                p.dayIncidentCount -= v.Incident_Counter;
+
+            }
+            return p;
+        },
+        function() {
+            return { totalIncidentCount: 0, dayIncidentCount: 0 };
+        }
+    );
+
+ dc.numberDisplay(dayOfPercentage)
+
+        .group(percentage)
+
+        .transitionDuration(2000)
+        .formatNumber(d3.format(".2%"))
+        .valueAccessor(function(d) {
+            if (d.totalIncidentCount == 0) { //If the count is 0 than return no value
+                return 0;
+            }
+            else {
+                return (d.dayIncidentCount / d.totalIncidentCount); 
+            }
+        });
+
+}
+
         
