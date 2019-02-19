@@ -53,6 +53,7 @@ var ndx =crossfilter(fireData);
         show_fire_by_area10(ndx);
        // show_fire_by_time(ndx);
         //show_fire_by_day(ndx);
+        show_fire_by_group(ndx);
          show_percentage_Incidents(ndx, "Fri", "#percentFri");
    
         
@@ -120,8 +121,18 @@ var ndx =crossfilter(fireData);
    
   
   
+    function show_fire_by_group(ndx){
+    var group_dim = ndx.dimension(dc.pluck('Desc_group'));
+    var total_count_per_group = group_dim.group().reduceSum(dc.pluck('Incident_Counter'));
     
+    dc.pieChart("#Fire-by-servicegroup")
+    .height(330)
+    .radius(90)
+    .transitionDuration(1500)
+    .dimension(group_dim)
+    .group(total_count_per_group);
     
+    }
     
 
     function show_fire_by_area(ndx) {
