@@ -1,9 +1,12 @@
 //loading the data using the queue js library
 //when data is downloaded call the makeGraphs function
 
+
 queue()
     .defer(d3.csv, "data/firedata.csv")
     .await(makeGraphs);
+    
+    
     
 //data will be passed into variable fireData by queue.min.js  
 //creating crossfilter
@@ -18,18 +21,20 @@ var ndx =crossfilter(fireData);
        var parseDate = d3.time.format("%d-%m-%y").parse;
        var parseTime = d3.time.format("%H:%M:%S").parse;
        var parseHour = d3.time.format("%H");
-       
-       
+       var parseYear = d3.time.format("%Y");
+      
             fireData.forEach(function(d){
             d.Incident_Counter = parseInt(d.Incident_Counter); // parsing the incident count key from text to a number.
             d.Date = parseDate(d.Date);
             d.TOC = parseHour(parseTime(d.TOC));
+           
         });
-    
+        
+ 
     
      // var year = d3.time.format("%Y");
        // fireData.forEach(function(d) {
-        //d.Date = year(parseDate(d.Date));
+        //d.Date = parseYear(parseDate(d.Date));
         //});
     
     
@@ -50,7 +55,7 @@ var ndx =crossfilter(fireData);
         show_fire_by_date(ndx);
        
         show_area_selector(ndx);
-        show_year_selector(ndx);
+       show_year_selector(ndx);
         show_type_selector(ndx);
         show_fire_by_description(ndx);
         show_fire_by_area10(ndx);
@@ -72,24 +77,24 @@ var ndx =crossfilter(fireData);
    function show_area_selector(ndx){
     var dim = ndx.dimension(dc.pluck('Station_Area'));
     var group = dim.group();
-    
         dc.selectMenu("#area-selector")
         .dimension(dim)
        .group(group);
    }
    
+  
     function show_year_selector(ndx)
     {
     
-    var dim = ndx.dimension(dc.pluck('Date'));
-    var group = dim.group();
-        dc.selectMenu("#year-selector")
-        .dimension(dim)
-        .group(group);
-        
-       
-        
+    var yearFormat = d3.time.format("%Y");
+    var yeardim = ndx.dimension(dc.pluck('Date'));
+     var group = yeardim.group();
+       dc.selectMenu('#year-selector')
+               .dimension(yeardim)
+               .group(group);
+               
    }
+   
    
     function show_type_selector(ndx){
     var dim = ndx.dimension(dc.pluck('Desc_group'));
@@ -327,13 +332,9 @@ function show_fire_by_area10(ndx) {
 
 
       function show_fire_by_day(ndx) {
-       // var day_dim = ndx.dimension(dc.pluck('Date'));
-        //var total_count_per_day = day_dim.group().reduceSum(dc.pluck('Incident_Counter'));
-       
         var dayOfWeek = ndx.dimension(function (d) {
         var day = d.Date.getDay();
-        var name = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        //return day + '.' + name[day];
+        var name = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         return name[day];
         });
     
@@ -352,4 +353,3 @@ function show_fire_by_area10(ndx) {
 
 }
 
-        
