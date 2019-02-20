@@ -9,7 +9,6 @@ queue()
 //creating crossfilter
 
 
-
 function makeGraphs(error, fireData) {
 var ndx =crossfilter(fireData);
  
@@ -17,18 +16,23 @@ var ndx =crossfilter(fireData);
 //to display in select menu drop down list as 2013,2014,2015
 
        var parseDate = d3.time.format("%d-%m-%y").parse;
-     //  var parseTime = d3.time.format("%H:%M %p").parse;
+       var parseTime = d3.time.format("%H:%M:%S").parse;
+       var parseHour = d3.time.format("%H");
        
-       
-    
-           fireData.forEach(function(d){
+            fireData.forEach(function(d){
             d.Incident_Counter = parseInt(d.Incident_Counter); // parsing the incident count key from text to a number.
             d.Date = parseDate(d.Date);
-          //  d.TOC = parseTime(d.TOC);
+            d.TOC = parseHour(parseTime(d.TOC));
+            
+
+             
         });
     
     
-      
+     // var year = d3.time.format("%Y");
+       // fireData.forEach(function(d) {
+        //d.Date = year(parseDate(d.Date));
+        //});
     
     
 
@@ -46,13 +50,13 @@ var ndx =crossfilter(fireData);
         
        show_fire_by_area(ndx);
         show_fire_by_date(ndx);
+       
         show_area_selector(ndx);
         show_year_selector(ndx);
         show_type_selector(ndx);
         show_fire_by_description(ndx);
         show_fire_by_area10(ndx);
-       // show_fire_by_time(ndx);
-        //show_fire_by_day(ndx);
+        show_fire_by_time(ndx);
         show_fire_by_group(ndx);
          show_percentage_Incidents(ndx, "Fri", "#percentFri");
    
@@ -62,7 +66,7 @@ var ndx =crossfilter(fireData);
     }
    
   
-   
+ 
    
    
    
@@ -77,30 +81,8 @@ var ndx =crossfilter(fireData);
    
     function show_year_selector(ndx)
     {
+    
     var dim = ndx.dimension(dc.pluck('Date'));
-   
-   var year = d3.time.format("%Y");
-      //    fireData.forEach(function(d) {
-    //     d.Date = year(parseDate(d.Date));
-      //   });
-   
-   
-  // facts.forEach(function(d) {
-  //if (d.types == 2) {
-    // d._type = "Type 2";
-  //} else if (d.types == 3) {
-    // d._type = "Type 3";
-  //} else {
-    // d._type = "Other";
- // }
-//});
-
-//var types = facts.dimension(dc.pluck('_type'))
-   
-   
-   
-   
-   
     var group = dim.group();
         dc.selectMenu("#year-selector")
         .dimension(dim)
@@ -138,6 +120,7 @@ var ndx =crossfilter(fireData);
     function show_fire_by_area(ndx) {
     var name_dim = ndx.dimension(dc.pluck('Station_Area'));
     var group = name_dim.group();
+   
   
         dc.barChart("#Fire-by-area")
         .width(1100)
@@ -152,6 +135,8 @@ var ndx =crossfilter(fireData);
         .yAxis().ticks(20);
          
 }
+
+
 
 
 function show_fire_by_description(ndx) {
@@ -271,34 +256,31 @@ function show_fire_by_area10(ndx) {
      }
      
      
-     /*
+     
         function show_fire_by_time(ndx) {
         var time_dim = ndx.dimension(dc.pluck('TOC'));
         var total_count_per_time = time_dim.group().reduceSum(dc.pluck('Incident_Counter'));
-       
-    // var hours = ndx.dimension(function(d){
-        //     return d3.time.hour(timeFormat.parse(d.TOC));
-        // });
-        // var totalByHour = hours.group().reduceSum(function(d){
-        //                         return d.Incident_counter;
-        //                     });   
-       
-       var hourChart = dc.barChart('#hour-chart')
-        hourChart
+        var timeFormat = d3.time.format("%H:%M:%S");
+        
+        
+        
+        
+        dc.barChart("#Fire-by-time")
         .width(550)
         .height(300)
-       // .dimension(hour)
-        //.group(hours)
+        .margins({top: 10, right: 50, bottom: 30, left: 50})
         .dimension(time_dim)
         .group(total_count_per_time)
-        .x(d3.scale.linear()
-         .domain([0, 23])
-         .rangeRound([0, 10 * 24]))
-        .controlsUseVisibility(true);
-        hourChart.yAxis().tickFormat(d3.format('s'));
-       
+        //.title(function(d) { return timeFormat(d.key) + " - " + d.value + " reported incidents"; })
+        .renderTitle(true)
+        .transitionDuration(500)//how quickly chart animates when filtered
+        .x(d3.scale.ordinal())
+        .xUnits(dc.units.ordinal)
+        .xAxisLabel("24 Hour Time")
+        .yAxis().ticks(20);
+       // .yAxis().tickFormat(d3.format(".3s"));
          }
-        */
+        
         
   
     
@@ -331,7 +313,6 @@ function show_fire_by_area10(ndx) {
  dc.numberDisplay(dayOfPercentage)
 
         .group(percentage)
-
         .transitionDuration(2000)
         .formatNumber(d3.format(".2%"))
         .valueAccessor(function(d) {
