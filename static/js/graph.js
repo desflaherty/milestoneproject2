@@ -19,13 +19,11 @@ var ndx =crossfilter(fireData);
        var parseTime = d3.time.format("%H:%M:%S").parse;
        var parseHour = d3.time.format("%H");
        
+       
             fireData.forEach(function(d){
             d.Incident_Counter = parseInt(d.Incident_Counter); // parsing the incident count key from text to a number.
             d.Date = parseDate(d.Date);
             d.TOC = parseHour(parseTime(d.TOC));
-            
-
-             
         });
     
     
@@ -58,8 +56,9 @@ var ndx =crossfilter(fireData);
         show_fire_by_area10(ndx);
         show_fire_by_time(ndx);
         show_fire_by_group(ndx);
-         show_percentage_Incidents(ndx, "Fri", "#percentFri");
-   
+        show_percentage_Incidents(ndx, "Fri", "#percentFri");
+        show_percentage_Incidents(ndx, "Sat", "#percentSat");
+        show_fire_by_day(ndx);
         
         dc.renderAll(); //call to render dimensional charting
         
@@ -288,6 +287,7 @@ function show_fire_by_area10(ndx) {
      function show_percentage_Incidents(ndx, day, dayOfPercentage) {
 
     var dayFormat = d3.time.format("%a");
+    var daydim = ndx.dimension(dc.pluck('Date'));
     var percentage = ndx.groupAll().reduce(
 
         function(p, v) {
@@ -310,8 +310,7 @@ function show_fire_by_area10(ndx) {
         }
     );
 
- dc.numberDisplay(dayOfPercentage)
-
+        dc.numberDisplay(dayOfPercentage)
         .group(percentage)
         .transitionDuration(2000)
         .formatNumber(d3.format(".2%"))
@@ -323,6 +322,33 @@ function show_fire_by_area10(ndx) {
                 return (d.dayIncidentCount / d.totalIncidentCount); 
             }
         });
+        
+     }
+
+
+      function show_fire_by_day(ndx) {
+       // var day_dim = ndx.dimension(dc.pluck('Date'));
+        //var total_count_per_day = day_dim.group().reduceSum(dc.pluck('Incident_Counter'));
+       
+        var dayOfWeek = ndx.dimension(function (d) {
+        var day = d.Date.getDay();
+        var name = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        //return day + '.' + name[day];
+        return name[day];
+        });
+    
+        var dayOfWeekGroup = dayOfWeek.group();
+        
+        
+      
+         dc.rowChart("#Fire-by-day")
+        .width(550)
+        .height(300)
+        .margins({top: 10, right: 50, bottom: 30, left: 50})
+        .dimension(dayOfWeek)
+        .group(dayOfWeekGroup)
+        .transitionDuration(500)//how quickly chart animates when filtered
+       
 
 }
 
