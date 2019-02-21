@@ -95,7 +95,9 @@ var ndx =crossfilter(fireData);
     var group = dim.group();
         dc.selectMenu("#area-selector")
         .dimension(dim)
-       .group(group);
+       .group(group)
+       .title(function(d) { return d.key; })
+        .promptText('All Station Areas');
    }
    
   
@@ -106,8 +108,9 @@ var ndx =crossfilter(fireData);
     var group = dim.group();
         dc.selectMenu("#type-selector")
         .dimension(dim)
-        .group(group);
-        
+        .group(group)
+        .title(function(d) { return d.key; })
+        .promptText('Incident Type');
    }
    
    function show_year_selector(ndx,Year)
@@ -116,8 +119,9 @@ var ndx =crossfilter(fireData);
      var group = yeardim.group();
        dc.selectMenu('#year-selector')
                .dimension(yeardim)
-               .group(group);
-               
+               .group(group)
+               .title(function(d) { return d.key; })
+               .promptText('Year');
    }
    
    function show_month_selector(ndx,Month)
@@ -126,91 +130,79 @@ var ndx =crossfilter(fireData);
      var group = monthdim.group();
        dc.selectMenu('#month-selector')
                .dimension(monthdim)
-               .group(group);
-               
+               .group(group)
+               .title(function(d) { return d.key; })
+               .promptText('Month');
    }
    
-   
- //  function show_average_response_time(ndx) {
+  /* 
+  function show_average_response_time(ndx) {
        
+    var TOC_dim = ndx.dimension(dc.pluck('TOC'));   
    // var IA_dim = ndx.dimension(dc.pluck('IA'));   
-    //var TOC_dim = ndx.dimension(dc.pluck('TOC_hms'));
-    //var group = dim.group();  
-       
    
+   
+     var total_TOC = dim.group().reduce(
+        function(p, v) {
+            p.total += v.TOC;
+            return p;
+        },
+        function(p, v) {
+            p.total -= v.TOC;
 
-//}
+            return p;
+        },
+        function() {
+            return { total: 0 };
+        }
+    );
+   */
 
-   /*
-       
-      var response_time_dim = IA_dim - TOC_dim
-      
-      var average_response_time = response_time_dim.group().reduce(
-            
-            // Add a Fact
-            function (p,v) {
-                p.count++;
-                p.total += v.response_time_dim;
-                p.average = p.total / p.count
-                return p;
-            },
-            
-            //Remove a Fact
-            function (p,v) {
-                p.count --;
-                if (p.count == 0) {
-                    p.total = 0;
-                    p.average = 0;
-                } else {
-                    p.total -= v.response_time_dim;
-                    p.average=p.total/p.count;
-                }
-                return p;
-            },
-            
-            //Initialise the reducer
-            function () {
-                return {count:0, total:0, average:0};
-            }
-            
-        
-            );
-     
-         dc.numberDisplay(average_response_time)
-        .group(average_response_time)
-        .transitionDuration(2000)
-        .formatNumber(d3.format(".2%"))
-        .valueAccessor(function(d) {
-            if (d.totalIncidentCount == 0) { //If the count is 0 than return no value
-                return 0;
-            }
-            else {
-                return (d.dayIncidentCount / d.totalIncidentCount); 
-            }
-        });
-        
 
-   }
-*/
+
    
     function show_fire_by_group(ndx){
     var group_dim = ndx.dimension(dc.pluck('Desc_group'));
-    var total_count_per_group = group_dim.group().reduceSum(dc.pluck('Incident_Counter'));
+    //var total_count_per_group = group_dim.group().reduceSum(dc.pluck('Incident_Counter'));
+    
+    var total_count_per_group = group_dim.group().reduce(
+        function(p, v) {
+            p.total += v.Incident_Counter;
+            return p;
+        },
+        function(p, v) {
+            p.total -= v.Incident_Counter;
+
+            return p;
+        },
+        function() {
+            return { total: 0 };
+        }
+    );
     
     dc.pieChart("#Fire-by-servicegroup")
     .height(330)
     .radius(90)
     .transitionDuration(1500)
     .dimension(group_dim)
-    .group(total_count_per_group);
-    
+    .group(total_count_per_group)
+    .title(function(d) { return d.key + " " + ((d.value.total / 38552) * 100).toFixed(2) + "% - " + d.value.total + " Reported Incidents"; })
+   .valueAccessor(function(d) {
+            if (d.value.total > 0) {
+                return d.value.total;
+            }
+            else {
+                return 0;
+            }
+        });
+  
     }
     
 
     function show_fire_by_area(ndx) {
     var name_dim = ndx.dimension(dc.pluck('Station_Area'));
     var group = name_dim.group();
-   
+   // var incident_count = name_dim.group().reduceSum(dc.pluck("Incident_Counter"));
   
         dc.barChart("#Fire-by-area")
         .width(1100)
@@ -223,7 +215,7 @@ var ndx =crossfilter(fireData);
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Station Area")
         .yAxis().ticks(20);
-         
+       //  .title(function(d) { return ((d.value / 38552) * 100).toFixed(2) + "% - " + d.value + " Reported Incidents" + " by: " + d.key; });
 }
 
 
@@ -425,8 +417,6 @@ function show_fire_by_area10(ndx) {
         });
     
         var dayOfWeekGroup = dayOfWeek.group();
-        
-        
       
          dc.rowChart("#Fire-by-day")
         .width(550)
@@ -436,6 +426,7 @@ function show_fire_by_area10(ndx) {
         .group(dayOfWeekGroup)
         .transitionDuration(500)//how quickly chart animates when filtered
        
+        
 
 }
 
