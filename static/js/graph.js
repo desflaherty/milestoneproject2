@@ -38,26 +38,7 @@ var ndx =crossfilter(fireData);
             d.TOC = parseHour(parseTime(d.TOC));
             d.Year = d.Date.getFullYear();
             d.Month = parseMonth(d.Date);
-            
-            //create function to filter out null values from IA field
-            
-           //  var filtered_group = remove_not_specified(group)
-             //function remove_not_specified(IA) {
-             //return {
-              //all:function () {
-            //return IA.all().filter(function(d) {
-            //return d.key !=""; //removes 'Not Specified'
-            //});
-        //}
-    //};
-//}
-            
-         //    d.IA_hms =  parseTime(d.IA);
-        //     d.TOC_hms = parseTime(d.TOC);
-            
-      
-        
-            
+           
 });
         
  
@@ -135,30 +116,9 @@ var ndx =crossfilter(fireData);
                .promptText('Month');
    }
    
-  /* 
-  function show_average_response_time(ndx) {
+  
+  
        
-    var TOC_dim = ndx.dimension(dc.pluck('TOC'));   
-   // var IA_dim = ndx.dimension(dc.pluck('IA'));   
-   
-   
-     var total_TOC = dim.group().reduce(
-        function(p, v) {
-            p.total += v.TOC;
-            return p;
-        },
-        function(p, v) {
-            p.total -= v.TOC;
-
-            return p;
-        },
-        function() {
-            return { total: 0 };
-        }
-    );
-   */
-
-
 
    
     function show_fire_by_group(ndx){
