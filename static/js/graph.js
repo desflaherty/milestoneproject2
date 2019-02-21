@@ -1,3 +1,4 @@
+
 //loading the data using the queue js library
 //when data is downloaded call the makeGraphs function
 
@@ -18,45 +19,59 @@ var ndx =crossfilter(fireData);
 //converting from a string into a date format, and formatting as year only
 //to display in select menu drop down list as 2013,2014,2015
 
+
        var parseDate = d3.time.format("%d-%m-%y").parse;
        var parseTime = d3.time.format("%H:%M:%S").parse;
        var parseHour = d3.time.format("%H");
-       var parseYear = d3.time.format("%Y");
-      
+       var parseMonth = d3.time.format("%b");
+     
+       var countChart = dc.dataCount("#total_incidents");
+           countChart
+           .dimension(ndx)
+           .group(ndx.groupAll());
+        
+            
+    
             fireData.forEach(function(d){
             d.Incident_Counter = parseInt(d.Incident_Counter); // parsing the incident count key from text to a number.
             d.Date = parseDate(d.Date);
             d.TOC = parseHour(parseTime(d.TOC));
-           
-        });
+            d.Year = d.Date.getFullYear();
+            d.Month = parseMonth(d.Date);
+            
+            //create function to filter out null values from IA field
+            
+           //  var filtered_group = remove_not_specified(group)
+             //function remove_not_specified(IA) {
+             //return {
+              //all:function () {
+            //return IA.all().filter(function(d) {
+            //return d.key !=""; //removes 'Not Specified'
+            //});
+        //}
+    //};
+//}
+            
+         //    d.IA_hms =  parseTime(d.IA);
+        //     d.TOC_hms = parseTime(d.TOC);
+            
+      
+        
+            
+});
         
  
-    
-     // var year = d3.time.format("%Y");
-       // fireData.forEach(function(d) {
-        //d.Date = parseYear(parseDate(d.Date));
-        //});
-    
-    
 
-      
-     
-        
-        var countChart = dc.dataCount("#total_incidents");
-         countChart
-        .dimension(ndx)
-        .group(ndx.groupAll());
-       
-        
-           
-        
-        
-       show_fire_by_area(ndx);
-        show_fire_by_date(ndx);
-       
+    
         show_area_selector(ndx);
-       show_year_selector(ndx);
         show_type_selector(ndx);
+        show_year_selector(ndx);
+        show_month_selector(ndx);
+       
+        
+        show_fire_by_area(ndx);
+        show_fire_by_date(ndx);
+        
         show_fire_by_description(ndx);
         show_fire_by_area10(ndx);
         show_fire_by_time(ndx);
@@ -64,6 +79,7 @@ var ndx =crossfilter(fireData);
         show_percentage_Incidents(ndx, "Fri", "#percentFri");
         show_percentage_Incidents(ndx, "Sat", "#percentSat");
         show_fire_by_day(ndx);
+        //show_average_response_time(ndx);
         
         dc.renderAll(); //call to render dimensional charting
         
@@ -83,18 +99,7 @@ var ndx =crossfilter(fireData);
    }
    
   
-    function show_year_selector(ndx)
-    {
     
-    var yearFormat = d3.time.format("%Y");
-    var yeardim = ndx.dimension(dc.pluck('Date'));
-     var group = yeardim.group();
-       dc.selectMenu('#year-selector')
-               .dimension(yeardim)
-               .group(group);
-               
-   }
-   
    
     function show_type_selector(ndx){
     var dim = ndx.dimension(dc.pluck('Desc_group'));
@@ -105,8 +110,89 @@ var ndx =crossfilter(fireData);
         
    }
    
-  
-  
+   function show_year_selector(ndx,Year)
+    {
+     var yeardim = ndx.dimension(dc.pluck('Year'));
+     var group = yeardim.group();
+       dc.selectMenu('#year-selector')
+               .dimension(yeardim)
+               .group(group);
+               
+   }
+   
+   function show_month_selector(ndx,Month)
+   {
+     var monthdim = ndx.dimension(dc.pluck('Month'));
+     var group = monthdim.group();
+       dc.selectMenu('#month-selector')
+               .dimension(monthdim)
+               .group(group);
+               
+   }
+   
+   
+ //  function show_average_response_time(ndx) {
+       
+   // var IA_dim = ndx.dimension(dc.pluck('IA'));   
+    //var TOC_dim = ndx.dimension(dc.pluck('TOC_hms'));
+    //var group = dim.group();  
+       
+   
+
+//}
+
+   /*
+       
+      var response_time_dim = IA_dim - TOC_dim
+      
+      var average_response_time = response_time_dim.group().reduce(
+            
+            // Add a Fact
+            function (p,v) {
+                p.count++;
+                p.total += v.response_time_dim;
+                p.average = p.total / p.count
+                return p;
+            },
+            
+            //Remove a Fact
+            function (p,v) {
+                p.count --;
+                if (p.count == 0) {
+                    p.total = 0;
+                    p.average = 0;
+                } else {
+                    p.total -= v.response_time_dim;
+                    p.average=p.total/p.count;
+                }
+                return p;
+            },
+            
+            //Initialise the reducer
+            function () {
+                return {count:0, total:0, average:0};
+            }
+            
+        
+            );
+     
+         dc.numberDisplay(average_response_time)
+        .group(average_response_time)
+        .transitionDuration(2000)
+        .formatNumber(d3.format(".2%"))
+        .valueAccessor(function(d) {
+            if (d.totalIncidentCount == 0) { //If the count is 0 than return no value
+                return 0;
+            }
+            else {
+                return (d.dayIncidentCount / d.totalIncidentCount); 
+            }
+        });
+        
+
+   }
+*/
+   
     function show_fire_by_group(ndx){
     var group_dim = ndx.dimension(dc.pluck('Desc_group'));
     var total_count_per_group = group_dim.group().reduceSum(dc.pluck('Incident_Counter'));
@@ -147,7 +233,7 @@ function show_fire_by_description(ndx) {
     var dim = ndx.dimension(dc.pluck('Desc_group_type'));
     var group = dim.group();
     
-    //creating a fake filtered group to exlude incidents in the dataset that have not been entered with a type of incident
+    //creating a fake filtered group to exlude incidents in the dataset that have not been entered with a 'type of incident' description
     var filtered_group = remove_not_specified(group)
     function remove_not_specified(Desc_group_type) {
     return {
@@ -334,7 +420,7 @@ function show_fire_by_area10(ndx) {
       function show_fire_by_day(ndx) {
         var dayOfWeek = ndx.dimension(function (d) {
         var day = d.Date.getDay();
-        var name = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        var name = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
         return name[day];
         });
     
