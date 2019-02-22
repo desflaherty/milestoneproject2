@@ -53,7 +53,7 @@ var ndx =crossfilter(fireData);
         show_area_selector(ndx);
         show_type_selector(ndx);
         show_year_selector(ndx);
-        show_month_selector(ndx);
+        //show_month_selector(ndx);
        
         
         show_fire_by_area(ndx);
@@ -67,7 +67,7 @@ var ndx =crossfilter(fireData);
         show_percentage_Incidents(ndx, "Sat", "#percentSat");
         show_fire_by_day(ndx);
         show_fire_by_month(ndx);
-       
+        show_fire_by_all_incidents(ndx);
         
         dc.renderAll(); //call to render dimensional charting
         
@@ -113,6 +113,7 @@ var ndx =crossfilter(fireData);
                .promptText('Year');
    }
    
+   /*
    function show_month_selector(ndx,Month)
    {
      var monthdim = ndx.dimension(dc.pluck('Month'));
@@ -123,7 +124,7 @@ var ndx =crossfilter(fireData);
                .title(function(d) { return d.key; })
                .promptText('Month');
    }
-   
+   */
   
   
        
@@ -186,7 +187,26 @@ var ndx =crossfilter(fireData);
        //  .title(function(d) { return ((d.value / 38552) * 100).toFixed(2) + "% - " + d.value + " Reported Incidents" + " by: " + d.key; });
 }
 
-
+  function show_fire_by_all_incidents(ndx) {
+    var type_dim = ndx.dimension(dc.pluck('Desc_group_type'));
+    var group = type_dim.group();
+   // var incident_count = name_dim.group().reduceSum(dc.pluck("Incident_Counter"));
+  
+        dc.barChart("#Fire-by-all-incidents")
+        
+        .width(1200)
+        .height(400)
+        .margins({ top: 10, right: 50, bottom: 200, left: 50 })
+        .elasticY(false)
+        .dimension(type_dim)
+        .group(group)
+        .transitionDuration(500)//how quickly chart animates when filtered
+        .x(d3.scale.ordinal())
+        .xUnits(dc.units.ordinal)
+        .xAxisLabel("Incident Type")
+        .yAxis().ticks(10);
+       //  .title(function(d) { return ((d.value / 38552) * 100).toFixed(2) + "% - " + d.value + " Reported Incidents" + " by: " + d.key; });
+}
 
 
 
