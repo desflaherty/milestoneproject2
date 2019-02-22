@@ -20,27 +20,33 @@ var ndx =crossfilter(fireData);
 //to display in select menu drop down list as 2013,2014,2015
 
 
+
+
+
        var parseDate = d3.time.format("%d-%m-%y").parse;
        var parseTime = d3.time.format("%H:%M:%S").parse;
        var parseHour = d3.time.format("%H");
        var parseMonth = d3.time.format("%b");
+       
      
        var countChart = dc.dataCount("#total_incidents");
            countChart
            .dimension(ndx)
            .group(ndx.groupAll());
-        
-            
-    
+           
+         
             fireData.forEach(function(d){
             d.Incident_Counter = parseInt(d.Incident_Counter); // parsing the incident count key from text to a number.
             d.Date = parseDate(d.Date);
             d.TOC = parseHour(parseTime(d.TOC));
             d.Year = d.Date.getFullYear();
             d.Month = parseMonth(d.Date);
-           
+            
 });
-        
+
+
+             
+      
  
 
     
@@ -60,14 +66,16 @@ var ndx =crossfilter(fireData);
         show_percentage_Incidents(ndx, "Fri", "#percentFri");
         show_percentage_Incidents(ndx, "Sat", "#percentSat");
         show_fire_by_day(ndx);
-        //show_average_response_time(ndx);
+        show_fire_by_month(ndx);
+       
         
         dc.renderAll(); //call to render dimensional charting
         
     }
    
-  
  
+   
+   
    
    
    
@@ -181,6 +189,8 @@ var ndx =crossfilter(fireData);
 
 
 
+
+
 function show_fire_by_description(ndx) {
     var dim = ndx.dimension(dc.pluck('Desc_group_type'));
     var group = dim.group();
@@ -197,6 +207,7 @@ function show_fire_by_description(ndx) {
     };
 }
     
+
          dc.rowChart("#Fire-by-description")
         .width(550)
         .height(300)
@@ -386,7 +397,32 @@ function show_fire_by_area10(ndx) {
         .group(dayOfWeekGroup)
         .transitionDuration(500)//how quickly chart animates when filtered
        
-        
 
 }
 
+
+function show_fire_by_month(ndx) {
+     var Month = ndx.dimension(function (d) {
+        var month = d.Date.getMonth();
+        var name = [ 'Jan', 'Feb' , 'Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return name[month];
+        });
+    
+        var monthGroup = Month.group();
+      
+         dc.barChart("#Fire-by-month-barchart")
+        .width(550)
+        .height(300)
+        .margins({top: 10, right: 50, bottom: 30, left: 50})
+        .dimension(Month)
+        .group(monthGroup)
+        .transitionDuration(500)//how quickly chart animates when filtered
+        .x(d3.scale.ordinal())
+        .xUnits(dc.units.ordinal)
+       
+       
+        .xAxisLabel("Month")
+        
+        .yAxis().ticks(10);
+       // .yAxis().tickFormat(d3.format(".3s"));
+}
