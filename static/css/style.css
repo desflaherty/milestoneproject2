@@ -60,6 +60,28 @@ section {
 }
 
 
+/*/////////////////////MENU SELECTORS//////////////////////////////////////*/
+
+#area-selector {
+   float: none !important;
+}
+
+#type-selector {
+   float: none !important;
+}
+
+/*-------------------------------------------------*/
+
+.question-answer-container {
+   display: inline-block;
+   position: absolute;
+   right: 30px;
+   margin-top: 10px;
+   color: black;
+}
+
+
+
 /*--------------BUTTONS---------------------------*/
 .reset-button {
    color: #000;
