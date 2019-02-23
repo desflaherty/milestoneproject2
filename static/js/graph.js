@@ -126,7 +126,30 @@ var ndx =crossfilter(fireData);
    }
    */
   
-  
+  function show_fire_by_month(ndx) {
+     var Month = ndx.dimension(function (d) {
+        var month = d.Date.getMonth();
+        var name = [ 'January', 'February' , 'March','April','May','June','July','August','September','October','November','December'];
+        return name[month];
+        });
+    
+        var monthGroup = Month.group();
+      
+         dc.barChart("#Fire-by-month")
+        .width(550)
+        .height(300)
+        .margins({top: 10, right: 50, bottom: 30, left: 50})
+        .dimension(Month)
+        .group(monthGroup)
+        .transitionDuration(500)//how quickly chart animates when filtered
+        .x(d3.scale.ordinal())
+        .xUnits(dc.units.ordinal)
+        .xAxisLabel("Month")
+        .yAxis().ticks(10);
+       // .yAxis().tickFormat(d3.format(".3s"));
+       
+}
+
        
 
    
@@ -421,28 +444,3 @@ function show_fire_by_area10(ndx) {
 }
 
 
-function show_fire_by_month(ndx) {
-     var Month = ndx.dimension(function (d) {
-        var month = d.Date.getMonth();
-        var name = [ 'Jan', 'Feb' , 'Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        return name[month];
-        });
-    
-        var monthGroup = Month.group();
-      
-         dc.barChart("#Fire-by-month-barchart")
-        .width(550)
-        .height(300)
-        .margins({top: 10, right: 50, bottom: 30, left: 50})
-        .dimension(Month)
-        .group(monthGroup)
-        .transitionDuration(500)//how quickly chart animates when filtered
-        .x(d3.scale.ordinal())
-        .xUnits(dc.units.ordinal)
-       
-       
-        .xAxisLabel("Month")
-        
-        .yAxis().ticks(10);
-       // .yAxis().tickFormat(d3.format(".3s"));
-}

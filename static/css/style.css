@@ -57,6 +57,12 @@ section {
    color: #FFF;
 }
 
+.chart-outer-container {
+   overflow: hidden;
+   border: 1px solid #000;
+   
+}
+
 .reset-margin-top {
    margin-top: 0px;
    padding: 0;
@@ -127,3 +133,62 @@ section {
    padding: 16px 50px;
 }
 
+/*-------------------------------dc chart default settings*/
+
+.dc-chart {
+   background-color: transparent;
+}
+
+.text .x.axis text {
+   text-anchor: start !important;
+   transform: rotate(60deg);
+   fill: #000;
+   font-weight: bold;
+}
+
+.dc-chart g.row text {
+   fill: black;
+   font-weight: bold;
+}
+
+.dc-chart .pie-slice {
+   fill: black;
+   font-weight: bold;
+}
+
+.dc-chart .grid-line line {
+   stroke: #000;
+}
+
+text .y-axis-label .y-label {
+   font-weight: bold !important;
+}
+
+.empty-chart {
+   display: none;
+}
+
+.x-axis-label,
+.y-axis-label {
+   font-weight: bold;
+}
+
+.dc-chart rect.bar {}
+
+.info {
+   position: absolute;
+   
+   left: 0;
+   right: 0;
+   top: 57px;
+   bottom: 0;
+   z-index: 1;
+}
+
+
+.text .x.axis text {
+   text-anchor: start !important;
+   transform: rotate(60deg);
+   fill: #000;
+   font-weight: bold;
+}
