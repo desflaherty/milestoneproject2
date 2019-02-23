@@ -10,40 +10,62 @@
     <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="static/css/dc.min.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="static/css/style.css" type="text/css" />
   
 </head>
 
   <body>
+      
+      <!--**********RESET BUTTON*********************** -->
+    <a class="reset-button" href = "javascript:dc.filterAll(); dc.renderAll();">Reset All
+    </a>
+      
       <header>
-          <div>
+          <div class="text-center">
                <h1>Fire Incident Activity in the Dublin area</h1>
           </div>
       </header>
       
-   <!--**********RESET BUTTON*********************** -->
-    <a href = "javascript:dc.filterAll(); dc.renderAll();">Reset All
-    </a>
-    
     <!--*******MENU SELECTORS*********************** -->
-    <section class ="container-fluid bg_container">
+    
+    <section class ="container-custom">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 text-center">
-                <div class="dropdown-head">
+               <div class="chart-head">
                 <h5>Station Area</h5>
-                
+              <div class="question-answer-container">
+                        <i class="fas fa-question-circle"></i>
+                        <p class="description-container-hidden"></p>
+                    </div>  
                 </div>
+                
+                
          <div class="bgc-w">
+            
                     <div id="area-selector"></div>
          </div>
+         
+         
          <div class="chart-head offence-counter-head">
                     <h5>Total reported incidents</h5>
-                    <div id = "total_incidents" class = "dc-data-count" style = "float:left">
-                    <span class = "filter-count"></span> selected out of 
-                    <span class = "total-count"></span>  
+                    <div class="question-answer-container">
+                        <i class="fas fa-question-circle"></i>
+                        <p class="description-container-hidden"></p>
                     </div>
+                </div>
+             <div class="bgc-w">
+                    <div class="inline-block">
+                    <div id = "total_incidents" class="dc-data-count">
+                    <span class = "filter-count" ></span> 
+                    <!--
+                    <span>selected out of </span>
+                    <span class = "total-count"></span> 
+                    -->
+                    </div>
+                    
+                    </div>
+               </div>
         </div>
-        
 
   
     <div id="type-selector"></div>
