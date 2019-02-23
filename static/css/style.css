@@ -3,7 +3,7 @@
 body {
    background-color: #e9ecef;
    color: #000;
-   font-family: "titillium web", sans-serif;
+   font-family: 'Abel', sans-serif;
 }
 
 
@@ -12,10 +12,12 @@ body {
 
 section {
    padding-bottom: 50px;
-   background-image: url("../images/fire_dept_doors.jpg");
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+   url("../images/fire_dept_doors.jpg");
    background-size: contain;
    background-attachment: fixed;
    background-position: top;
+  
 }
 
 .container-custom {
@@ -27,8 +29,8 @@ section {
 
 @media (min-width: 1400px) {
    .container-custom {
-      padding-right: 15px;
-      padding-left: 15px;
+      padding-right: 25px;
+      padding-left: 25px;
       margin-right: auto;
       margin-left: auto;
       width: 1400px;
@@ -36,7 +38,7 @@ section {
 }
 
 .inline-block {
-   display: inline-block;
+   display: inline;
 }
 
 .text-center {
@@ -49,9 +51,10 @@ section {
 }
 
 .chart-head {
-   background-color: rgb(31, 119, 180);
-   border-bottom: 2px solid gray;
+   background-color: #ff9a18d6;
+   /*border-bottom: 2px solid gray;*/
    margin-top: 20px;
+   color: #FFF;
 }
 
 .reset-margin-top {
