@@ -30,7 +30,7 @@ section {
 
 
 .inline-block {
-   display: inline;
+   display: inline-block;
 }
 
 .text-center {
@@ -112,8 +112,13 @@ section {
 
 /*/////////////////////Incident Counter///////////////////////////////////////*/
 
-.dc-data-count {
-   font-size: 50px;
+.dc-data-count-l {
+   font-size: 70px;
+   padding: 16px 50px;
+}
+
+.dc-data-count-s {
+   font-size: 14px;
    padding: 16px 50px;
 }
 
@@ -158,10 +163,7 @@ text .y-axis-label .y-label {
 
 .chart_display {
    position: absolute;
-   left: 0;
-   right: 0;
-   top: 57px;
-   bottom: 0;
+   
    z-index: 1;
 }
 

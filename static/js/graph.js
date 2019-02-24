@@ -136,8 +136,8 @@ var ndx =crossfilter(fireData);
         var monthGroup = Month.group();
       
          dc.barChart("#Fire-by-month")
-        .width(550)
-        .height(300)
+        .width(800)
+        .height(100)
         .margins({top: 10, right: 50, bottom: 30, left: 50})
         .dimension(Month)
         .group(monthGroup)
@@ -197,7 +197,7 @@ var ndx =crossfilter(fireData);
    // var incident_count = name_dim.group().reduceSum(dc.pluck("Incident_Counter"));
   
         dc.barChart("#Fire-by-area")
-        .width(1100)
+        .width(550)
         .height(300)
         .margins({top: 10, right: 50, bottom: 30, left: 50})
         .dimension(name_dim)
