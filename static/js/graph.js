@@ -299,8 +299,8 @@ function show_fire_by_area10(ndx) {
                 }
             }
         }
-        var serviceByMonth = date_dim.group().reduceSum(incident_by_service_type('Special Service'));
-        var fireByMonth = date_dim.group().reduceSum(incident_by_service_type('Fire'));
+        var serviceByMonth = date_dim.group().reduceSum(incident_by_service_type('SPECIAL SERVICE'));
+        var fireByMonth = date_dim.group().reduceSum(incident_by_service_type('FIRE'));
         
         dc.lineChart("#Fire-by-date")
             .width(1100)

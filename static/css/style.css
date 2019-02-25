@@ -46,7 +46,7 @@ section {
    /*background-color: #ff9a18d6;*/
    background-color: #fcff18cf;
    
-   /*border-bottom: 2px solid gray;*/
+   border-bottom: 2px solid gray;
    margin-top: 20px;
    color: #FFF;
 }
@@ -164,6 +164,8 @@ text .y-axis-label .y-label {
 .chart_display {
    position: absolute;
    z-index: 1;
+   
+  
 }
 
 
