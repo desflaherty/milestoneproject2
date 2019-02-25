@@ -1,7 +1,7 @@
 
 
 body {
-   background-color: #e9ecef;
+   background-color: #ff7518;
    color: #000;
    font-family: 'Abel', sans-serif;
 }
@@ -44,7 +44,7 @@ section {
 
 .menu-header {
    /*background-color: #ff9a18d6;*/
-   background-color: #fcff18d6;
+   background-color: #fcff18cf;
    
    /*border-bottom: 2px solid gray;*/
    margin-top: 20px;
@@ -114,7 +114,7 @@ section {
 
 .dc-data-count-l {
    font-size: 70px;
-   padding: 16px 50px;
+   padding: 16px 113px;
 }
 
 .dc-data-count-s {
@@ -163,7 +163,6 @@ text .y-axis-label .y-label {
 
 .chart_display {
    position: absolute;
-   
    z-index: 1;
 }
 
