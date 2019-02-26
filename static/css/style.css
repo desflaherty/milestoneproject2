@@ -119,18 +119,18 @@ section {
 /*/////////////////////Incident Counter///////////////////////////////////////*/
 
 .dc-data-count-l {
-   font-size: 69px;
-   padding: 16px 117px;
+   font-size: 70px;
+   padding: 16px 115px;
    color:#0f4d93;
 }
 
 .dc-data-count-s {
-   font-size: 40px;
+   font-size: 20px;
    color:#0f4d93;
 }
 
 .dc-data-count-text {
-   font-size: 15px;
+   font-size: 12px;
 }
 
 /*-------------------------------dc chart default settings*/
