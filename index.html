@@ -29,52 +29,54 @@
       
     <!--*******AREA SELECTOR*********************** -->
     
-    <section class ="container-bg">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4  text-center">
+<section class ="container-bg">
+    <div class="row">
+            
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4  text-center">
                <div class="menu-header">
                 <h5>Station Area</h5>
-               
                 </div>
              <div class="menu-dropdown">
-              <div id="area-selector"></div>
+              <div id="area-selector">
+              </div>
              </div>
-             </div>
+        </div>
              
     <!--*******INCIDENT TYPE SELECTOR*********************** -->      
     
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4  text-center">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4  text-center">
            <div class="menu-header">
            <h5>Type of Incident</h5>
-              
-                </div>
+            </div>
          <div class="menu-dropdown">
-          <div id="type-selector"></div>
+          <div id="type-selector">
+          </div>
          </div>
-         </div>
+    </div>
          
      <!--*******YEAR  SELECTOR*********************** -->      
             
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 text-center">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 text-center">
            <div class="menu-header">
            <h5>Year of Incident</h5>
-              
-                </div>
+           </div>
          <div class="menu-dropdown">
-          <div id="year-selector"></div>
+          <div id="year-selector">
+          </div>
          </div>
-         </div> 
-    </div>     <!--END ROW ONE -->
+    </div> 
+         
+</div>     <!--END ROW ONE -->
     
     <!-- *************************ROW TWO******************************************-->
     <!--**********************INCIDENT COUNTER ********************************-->
          
 <div class="row">
          
-         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 text-center">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 text-center">
+             <div class="chart_display"></div>
                 <div class="menu-header">
                     <h5>Total reported Incidents</h5>
-                    
                 </div>
                 
                     <div class="chart_display menu-dropdown">
@@ -87,15 +89,15 @@
                     </div>
                     </div>
                     </div>      
-        </div>            
-                 
-            <div class="col-sm-12 col-md-12 col-lg-8 text-center">  
-            <div class="chart_display">
-                    
-                </div>
+     </div>            
+           
+             <!-- 
+    <div class="col-sm-12 col-md-12 col-lg-8 text-center">  
+          <div class="chart_display"></div>
+          
+          
                    <div class="menu-header">
                     <h5>Incidents by Month</h5>
-                    
                     </div>
                 
                     <div class="chart-outer-container menu-dropdown">
@@ -104,7 +106,25 @@
                     </div>
                     </div>
                     </div>      
-           </div>    
+     </div>    
+          -->
+          
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 text-center">
+             <div class="chart_display"></div>
+                <div class="menu-header">
+                    <h5>Total Incidents by Area</h5>
+                    
+                </div>
+                
+                    <div class="chart-outer-container menu-dropdown">
+                    <div class="inline-block">
+                    <div id = "Fire-by-area" class="text">
+                    </div>
+                    </div>
+                 
+              </div>      
+        </div>   
+           
            
 </div> <!-- Row Close
 
@@ -126,25 +146,30 @@
      <!-- *************************ROW THREE******************************************-->
     <!--**********************AREAS OF INCIDENTS ********************************-->
     
-        <div class="row">
-         
-         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
-             <div class="chart_display"></div>
-                <div class="menu-header">
-                    <h5>Total Incidents by Area</h5>
-                    
-                </div>
-                
-                    <div class="chart-outer-container menu-dropdown">
-                    <div class="inline-block">
-                    <div id = "Fire-by-area" class="text">
-                    </div>
-                    </div>
-                 
-              </div>      
-        </div>            
-                 
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">  
+      
+    
+    
+    <!-- *************************ROW FOUR******************************************-->
+    <!--**********************INCIDENT TYPE & TOP 10********************************-->
+    
+    <div class="row">    
+    
+    <!--
+     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">  
+     <div class="chart_display"></div>
+     <div class="menu-header">
+                    <h5>Incident Group</h5>
+     </div>
+     
+         <div class="chart-outer-container menu-dropdown">
+        <div class="inline-block">
+     <div id="Fire-by-servicegroup" class="text"></div>
+         </div>
+         </div>
+        </div>
+  -->      
+  
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">  
             <div class="chart_display">
                     
                 </div>
@@ -162,15 +187,9 @@
                  
                     </div>      
            </div>        
-</div>
-    
-    
-    <!-- *************************ROW FOUR******************************************-->
-    <!--**********************INCIDENT TYPE & TOP 10********************************-->
-    
-    <div class="row">    
-    
-     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center"> 
+       
+       
+       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center"> 
      <div class="chart_display"></div>
      <div class="menu-header">
                     <h5>Top 10 Incidents by Type Description</h5>
@@ -182,23 +201,6 @@
          </div>
          </div>
         </div>
-    
-    
-    
-     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">  
-     <div class="chart_display"></div>
-     <div class="menu-header">
-                    <h5>Incident Group</h5>
-     </div>
-     
-         <div class="chart-outer-container menu-dropdown">
-        <div class="inline-block">
-     <div id="Fire-by-servicegroup" class="text"></div>
-         </div>
-         </div>
-        </div>
-        
-       
         
 </div> <!-- Close row     -->   
      
@@ -239,7 +241,7 @@
     
     <div class="chart-outer-container menu-dropdown">
         <div class="inline-block">
-     <div id="Fire-by-date" class="text"></div>
+     <div id="Fire-by-date"></div>
          </div>
          </div>
         </div>

@@ -52,21 +52,21 @@ var ndx =crossfilter(fireData);
         show_area_selector(ndx);
         show_type_selector(ndx);
         show_year_selector(ndx);
-        //show_month_selector(ndx);
+        //show_month_selector(ndx);//
        
         
         show_fire_by_area(ndx);
         show_fire_by_date(ndx);
-        
+        show_fire_by_all_incidents(ndx);
         show_fire_by_description(ndx);
         show_fire_by_area10(ndx);
         show_fire_by_time(ndx);
-        show_fire_by_group(ndx);
+       // show_fire_by_group(ndx);//
         show_percentage_Incidents(ndx, "Fri", "#percentFri");
         show_percentage_Incidents(ndx, "Sat", "#percentSat");
         show_fire_by_day(ndx);
-        show_fire_by_month(ndx);
-        show_fire_by_all_incidents(ndx);
+        //show_fire_by_month(ndx);//
+        
         
         dc.renderAll(); //call to render dimensional charting
         
@@ -124,7 +124,8 @@ var ndx =crossfilter(fireData);
                .promptText('Month');
    }
    */
-  
+ 
+ /* 
   function show_fire_by_month(ndx) {
      var Month = ndx.dimension(function (d) {
         var month = d.Date.getMonth();
@@ -141,9 +142,14 @@ var ndx =crossfilter(fireData);
         .dimension(Month)
         .group(monthGroup)
         .transitionDuration(500)//how quickly chart animates when filtered
-        .x(d3.scale.ordinal())
+        //.x(d3.scale.ordinal())
+       .x(d3.scale.ordinal().domain(Month))
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Month")
+       
+       
+        .renderHorizontalGridLines(true)
+        .renderVerticalGridLines(true)
         .yAxis().ticks(10);
        // .yAxis().tickFormat(d3.format(".3s"));
        
@@ -188,6 +194,7 @@ var ndx =crossfilter(fireData);
         });
   
     }
+    */
     
 
     function show_fire_by_area(ndx) {
@@ -196,15 +203,17 @@ var ndx =crossfilter(fireData);
    // var incident_count = name_dim.group().reduceSum(dc.pluck("Incident_Counter"));
   
         dc.barChart("#Fire-by-area")
-        .width(550)
+        .width(800)
         .height(300)
-        .margins({top: 10, right: 50, bottom: 30, left: 50})
+        .margins({top: 10, right: 50, bottom: 120, left: 50})
         .dimension(name_dim)
         .group(group)
         .transitionDuration(500)//how quickly chart animates when filtered
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Station Area")
+        .renderHorizontalGridLines(true)
+        .renderVerticalGridLines(true)
         .yAxis().ticks(20);
        //  .title(function(d) { return ((d.value / 38552) * 100).toFixed(2) + "% - " + d.value + " Reported Incidents" + " by: " + d.key; });
 }
@@ -226,6 +235,8 @@ var ndx =crossfilter(fireData);
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
         .xAxisLabel("Incident Type")
+        .renderHorizontalGridLines(true)
+        .renderVerticalGridLines(true)
         .yAxis().ticks(10);
        //  .title(function(d) { return ((d.value / 38552) * 100).toFixed(2) + "% - " + d.value + " Reported Incidents" + " by: " + d.key; });
 }
