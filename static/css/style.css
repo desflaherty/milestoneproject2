@@ -49,8 +49,9 @@ section {
 .menu-header {
    /*background-color: #ff9a18d6;*/
   /* background-color: #fcff18cf;*/
-   background-color: #ffed18cc;
-   border-bottom: 2px solid gray;
+  background-color: #ffed18cc;
+
+   border-bottom: 2px solid #0f4d93;
    margin-top: 20px;
    color: #FFF;
    padding-top: 10px;
@@ -118,18 +119,18 @@ section {
 /*/////////////////////Incident Counter///////////////////////////////////////*/
 
 .dc-data-count-l {
-   font-size: 70px;
-   padding: 16px 116px;
+   font-size: 69px;
+   padding: 16px 117px;
    color:#0f4d93;
 }
 
 .dc-data-count-s {
-   font-size: 30px;
+   font-size: 40px;
    color:#0f4d93;
 }
 
 .dc-data-count-text {
-   
+   font-size: 15px;
 }
 
 /*-------------------------------dc chart default settings*/
