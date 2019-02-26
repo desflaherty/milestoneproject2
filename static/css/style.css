@@ -1,5 +1,4 @@
 
-
 body {
    background-color: #ff7518;
    color: #000;
@@ -114,7 +113,8 @@ section {
 
 .dc-data-count-l {
    font-size: 70px;
-   padding: 16px 113px;
+   padding: 16px 116px;
+   color:blue;
 }
 
 .dc-data-count-s {
@@ -175,3 +175,4 @@ text .y-axis-label .y-label {
    fill: #000;
    font-weight: bold;
 }
+

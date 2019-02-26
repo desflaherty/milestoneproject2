@@ -1,4 +1,3 @@
-
 //loading the data using the queue js library
 //when data is downloaded call the makeGraphs function
 
@@ -442,5 +441,3 @@ function show_fire_by_area10(ndx) {
        
 
 }
-
-
