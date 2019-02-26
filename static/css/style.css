@@ -1,7 +1,7 @@
 
 body {
-   background-color: #ff7518;
-   color: #000;
+   background-color: #5f0a0a;
+   color: #FFF;
    font-family: 'Abel', sans-serif;
 }
 
@@ -36,6 +36,11 @@ section {
    text-align: center;
 }
 
+.header-text {
+  margin-top: 20px;
+}
+
+
 .menu-dropdown{
    background-color: rgba(255, 255, 255, 0.8);
    padding: 20px 0;
@@ -43,11 +48,12 @@ section {
 
 .menu-header {
    /*background-color: #ff9a18d6;*/
-   background-color: #fcff18cf;
-   
+  /* background-color: #fcff18cf;*/
+   background-color: #ffed18cc;
    border-bottom: 2px solid gray;
    margin-top: 20px;
    color: #FFF;
+   padding-top: 10px;
 }
 
 .chart-outer-container {
@@ -114,12 +120,16 @@ section {
 .dc-data-count-l {
    font-size: 70px;
    padding: 16px 116px;
-   color:blue;
+   color:#0f4d93;
 }
 
 .dc-data-count-s {
-   font-size: 14px;
-   padding: 16px 50px;
+   font-size: 30px;
+   color:#0f4d93;
+}
+
+.dc-data-count-text {
+   
 }
 
 /*-------------------------------dc chart default settings*/

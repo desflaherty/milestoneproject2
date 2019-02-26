@@ -136,7 +136,7 @@ var ndx =crossfilter(fireData);
       
          dc.barChart("#Fire-by-month")
         .width(800)
-        .height(100)
+        .height(200)
         .margins({top: 10, right: 50, bottom: 30, left: 50})
         .dimension(Month)
         .group(monthGroup)
