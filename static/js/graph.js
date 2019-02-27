@@ -65,7 +65,7 @@ var ndx =crossfilter(fireData);
         show_fire_by_description(ndx);
         show_fire_by_area10(ndx);
         show_fire_by_time(ndx);
-        show_fire_by_group(ndx);//
+       // show_fire_by_group(ndx);//
         show_percentage_Incidents(ndx, "Fri", "#percentFri");
         show_percentage_Incidents(ndx, "Sat", "#percentSat");
         show_fire_by_day(ndx);
@@ -163,7 +163,7 @@ var ndx =crossfilter(fireData);
 */
 
 
-
+/*
     function show_fire_by_group(ndx){
     var group_dim = ndx.dimension(dc.pluck('Desc_group'));
     //var total_count_per_group = group_dim.group().reduceSum(dc.pluck('Incident_Counter'));
@@ -204,6 +204,8 @@ var ndx =crossfilter(fireData);
   
   
     }
+    */
+    
     
     
     function totalIncidentCount(ndx){
@@ -287,24 +289,30 @@ function show_incidents_that_are_special(ndx) {
 
     function show_fire_by_area(ndx) {
     var name_dim = ndx.dimension(dc.pluck('Station_Area'));
-    var group = name_dim.group();
-   // var incident_count = name_dim.group().reduceSum(dc.pluck("Incident_Counter"));
+    //var group = name_dim.group();
+    var incident_count = name_dim.group().reduceSum(dc.pluck("Incident_Counter"));
+    var countChart = dc.dataCount;
   
         dc.barChart("#Fire-by-area")
         .width(800)
         .height(300)
         .margins({top: 10, right: 50, bottom: 120, left: 50})
         .dimension(name_dim)
-        .group(group)
+        .group(incident_count)
         .transitionDuration(500)//how quickly chart animates when filtered
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
         .xAxisLabel("FIRE STATION AREA")
         .renderHorizontalGridLines(true)
         .renderVerticalGridLines(true)
+        .title(function(d) {return (d.key + " : " + d.value + " Reported Incidents"); })
         .yAxis().ticks(20);
-       //  .title(function(d) { return ((d.value / 38552) * 100).toFixed(2) + "% - " + d.value + " Reported Incidents" + " by: " + d.key; });
 }
+
+
+
+
+
 
   function show_fire_by_all_incidents(ndx) {
     var type_dim = ndx.dimension(dc.pluck('Desc_group_type'));
@@ -322,7 +330,7 @@ function show_incidents_that_are_special(ndx) {
         .transitionDuration(500)//how quickly chart animates when filtered
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
-        .xAxisLabel("Incident Type")
+        .xAxisLabel("INCIDENT TYPE")
         .renderHorizontalGridLines(true)
         .renderVerticalGridLines(true)
         .yAxis().ticks(10);
@@ -440,10 +448,10 @@ function show_fire_by_area10(ndx) {
             .compose([
                 dc.lineChart(compositeChart)
                     .colors('red')
-                    .group(fireByMonth, 'Fire Call Outs'),
+                    .group(fireByMonth, 'FIRE CALL OUTS'),
                 dc.lineChart(compositeChart)
                     .colors('orange')
-                    .group(serviceByMonth, 'Service Call Outs'),
+                    .group(serviceByMonth, 'SPECIAL SERVICE CALL OUTS'),
                
             ]);
         
@@ -466,6 +474,7 @@ function show_fire_by_area10(ndx) {
         .dimension(time_dim)
         .group(total_count_per_time)
         //.title(function(d) { return timeFormat(d.key) + " - " + d.value + " reported incidents"; })
+        .title(function(d) {return (d.key + ":00 hrs."+" Over the next hour there were " + d.value + " Reported Incidents"); })
         .renderTitle(true)
         .transitionDuration(500)//how quickly chart animates when filtered
         .x(d3.scale.ordinal())
@@ -524,7 +533,7 @@ function show_fire_by_area10(ndx) {
       function show_fire_by_day(ndx) {
         var dayOfWeek = ndx.dimension(function (d) {
         var day = d.Date.getDay();
-        var name = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
+        var name = [ 'SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY' ];
         return name[day];
         });
     
