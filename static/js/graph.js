@@ -28,11 +28,14 @@ var ndx =crossfilter(fireData);
        var parseMonth = d3.time.format("%b");
        
      
+    /*
        var countChart = dc.dataCount("#total_incidents");
            countChart
            .dimension(ndx)
            .group(ndx.groupAll());
-           
+      */
+      
+       
          
             fireData.forEach(function(d){
             d.Incident_Counter = parseInt(d.Incident_Counter); // parsing the incident count key from text to a number.
@@ -48,12 +51,12 @@ var ndx =crossfilter(fireData);
       
  
 
-    
+        
         show_area_selector(ndx);
         show_type_selector(ndx);
         show_year_selector(ndx);
-        //show_month_selector(ndx);//
-       
+        
+        totalIncidentCount(ndx);
         
         show_fire_by_area(ndx);
         show_fire_by_date(ndx);
@@ -61,7 +64,7 @@ var ndx =crossfilter(fireData);
         show_fire_by_description(ndx);
         show_fire_by_area10(ndx);
         show_fire_by_time(ndx);
-       // show_fire_by_group(ndx);//
+        show_fire_by_group(ndx);//
         show_percentage_Incidents(ndx, "Fri", "#percentFri");
         show_percentage_Incidents(ndx, "Sat", "#percentSat");
         show_fire_by_day(ndx);
@@ -156,8 +159,10 @@ var ndx =crossfilter(fireData);
 }
 
        
+*/
 
-   
+
+
     function show_fire_by_group(ndx){
     var group_dim = ndx.dimension(dc.pluck('Desc_group'));
     //var total_count_per_group = group_dim.group().reduceSum(dc.pluck('Incident_Counter'));
@@ -193,8 +198,41 @@ var ndx =crossfilter(fireData);
             }
         });
   
+        
+        
+  
+  
     }
-    */
+    
+    
+    function totalIncidentCount(ndx){
+    
+    
+    var incident_count = ndx.groupAll().reduce(
+        function(p, v) {
+            p.total += v.Incident_Counter;
+            return p;
+        },
+        function(p, v) {
+            p.total -= v.Incident_Counter;
+
+            return p;
+        },
+        function() {
+            return { total: 0 };
+        }
+    );
+    
+   dc.numberDisplay("#total_incidents")
+        .group(incident_count)
+        .transitionDuration(1700)
+        .formatNumber(d3.format("f"))
+   .valueAccessor(function(d) { return d.total; });
+    }
+    
+    
+    
+    
     
 
     function show_fire_by_area(ndx) {
