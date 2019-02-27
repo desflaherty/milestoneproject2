@@ -46,6 +46,12 @@ section {
    padding: 20px 0;
 }
 
+.counter-menu{
+   background-color: rgba(255, 255, 255, 0.8);
+   padding: 10px 0;
+}
+
+
 .menu-header {
    /*background-color: #ff9a18d6;*/
   /* background-color: #fcff18cf;*/
@@ -119,13 +125,13 @@ section {
 /*/////////////////////Incident Counter///////////////////////////////////////*/
 
 .dc-data-count-l {
-   font-size: 70px;
+   font-size: 60px;
    padding: 16px 115px;
    color:#0f4d93;
 }
 
 .dc-data-count-s {
-   font-size: 20px;
+   font-size: 30px;
    color:#0f4d93;
 }
 

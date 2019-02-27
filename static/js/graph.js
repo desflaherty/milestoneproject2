@@ -57,7 +57,7 @@ var ndx =crossfilter(fireData);
         show_year_selector(ndx);
         
         totalIncidentCount(ndx);
-        
+        show_incidents_that_are_fire(ndx);
         show_fire_by_area(ndx);
         show_fire_by_date(ndx);
         show_fire_by_all_incidents(ndx);
@@ -207,7 +207,6 @@ var ndx =crossfilter(fireData);
     
     function totalIncidentCount(ndx){
     
-    
     var incident_count = ndx.groupAll().reduce(
         function(p, v) {
             p.total += v.Incident_Counter;
@@ -215,7 +214,6 @@ var ndx =crossfilter(fireData);
         },
         function(p, v) {
             p.total -= v.Incident_Counter;
-
             return p;
         },
         function() {
@@ -226,12 +224,39 @@ var ndx =crossfilter(fireData);
    dc.numberDisplay("#total_incidents")
         .group(incident_count)
         .transitionDuration(1700)
-        .formatNumber(d3.format("f"))
-   .valueAccessor(function(d) { return d.total; });
+        .formatNumber(d3.format("2f"))
+     .valueAccessor(function(d) { return d.total; });
     }
     
     
+    function show_incidents_that_are_fire(ndx) {
+    var incidentsThatAreFire = ndx.groupAll().reduce(
+        function(p, v) {
+            if (v.Desc_group === "FIRE") {
+                p.are_fire++;
+                
+            }
+            return p;
+        },
+        function(p, v) {
+            if (v.Desc_group === "FIRE") {
+                p.are_fire--;
+            }
+            return p;
+        },
+        function() {
+            return {are_fire: 0};    
+        },
+    );
     
+    dc.numberDisplay("#totalfire_incidents")
+        .group(incidentsThatAreFire)
+        .transitionDuration(1700)
+        .formatNumber(d3.format("2f"))
+     .valueAccessor(function(d) { return d.are_fire; });
+    }
+        
+
     
     
 
