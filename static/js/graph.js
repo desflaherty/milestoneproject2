@@ -58,6 +58,7 @@ var ndx =crossfilter(fireData);
         
         totalIncidentCount(ndx);
         show_incidents_that_are_fire(ndx);
+        show_incidents_that_are_special(ndx);
         show_fire_by_area(ndx);
         show_fire_by_date(ndx);
         show_fire_by_all_incidents(ndx);
@@ -234,7 +235,6 @@ var ndx =crossfilter(fireData);
         function(p, v) {
             if (v.Desc_group === "FIRE") {
                 p.are_fire++;
-                
             }
             return p;
         },
@@ -253,10 +253,35 @@ var ndx =crossfilter(fireData);
         .group(incidentsThatAreFire)
         .transitionDuration(1700)
         .formatNumber(d3.format("2f"))
-     .valueAccessor(function(d) { return d.are_fire; });
+        .valueAccessor(function(d) { return d.are_fire; });
     }
         
 
+function show_incidents_that_are_special(ndx) {
+    var incidentsThatAreSpecial = ndx.groupAll().reduce(
+        function(p, v) {
+            if (v.Desc_group === "SPECIAL SERVICE") {
+                p.are_special++;
+            }
+            return p;
+        },
+        function(p, v) {
+            if (v.Desc_group === "SPECIAL SERVICE") {
+                p.are_special--;
+            }
+            return p;
+        },
+        function() {
+            return {are_special: 0};    
+        },
+    );
+    
+    dc.numberDisplay("#totalspecial_incidents")
+        .group(incidentsThatAreSpecial)
+        .transitionDuration(1700)
+        .formatNumber(d3.format("2f"))
+        .valueAccessor(function(d) { return d.are_special; });
+    }
     
     
 
@@ -274,7 +299,7 @@ var ndx =crossfilter(fireData);
         .transitionDuration(500)//how quickly chart animates when filtered
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
-        .xAxisLabel("Station Area")
+        .xAxisLabel("FIRE STATION AREA")
         .renderHorizontalGridLines(true)
         .renderVerticalGridLines(true)
         .yAxis().ticks(20);

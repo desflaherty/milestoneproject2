@@ -32,6 +32,10 @@ section {
    display: inline-block;
 }
 
+.inline {
+   display: inline;
+}
+
 .text-center {
    text-align: center;
 }
@@ -48,7 +52,7 @@ section {
 
 .counter-menu{
    background-color: rgba(255, 255, 255, 0.8);
-   padding: 10px 0;
+
 }
 
 
@@ -131,7 +135,7 @@ section {
 }
 
 .dc-data-count-s {
-   font-size: 30px;
+   font-size: 28px;
    color:#0f4d93;
 }
 
