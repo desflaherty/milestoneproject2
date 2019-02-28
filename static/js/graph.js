@@ -289,8 +289,8 @@ function show_incidents_that_are_special(ndx) {
 
     function show_fire_by_area(ndx) {
     var name_dim = ndx.dimension(dc.pluck('Station_Area'));
-    //var group = name_dim.group();
-    var incident_count = name_dim.group().reduceSum(dc.pluck("Incident_Counter"));
+    var group = name_dim.group();
+    //var incident_count = name_dim.group().reduceSum(dc.pluck("Incident_Counter"));
     
   
         dc.barChart("#Fire-by-area")
@@ -298,13 +298,11 @@ function show_incidents_that_are_special(ndx) {
         .height(300)
         .margins({top: 10, right: 50, bottom: 120, left: 50})
         .dimension(name_dim)
-        .group(incident_count)
+        .group(group)
         .transitionDuration(500)//how quickly chart animates when filtered
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
         .xAxisLabel("FIRE STATION AREA")
-        .renderHorizontalGridLines(true)
-        .renderVerticalGridLines(true)
       //  .title(function(d) {return (d.key + " : " + d.value + " Reported Incidents"); })
         .title(function(d) { return ((d.value / 38552) * 100).toFixed(2) + "% - " + d.value + " Reported Incidents" + " at " + d.key; })
         .yAxis().ticks(20);
@@ -318,24 +316,25 @@ function show_incidents_that_are_special(ndx) {
   function show_fire_by_all_incidents(ndx) {
     var type_dim = ndx.dimension(dc.pluck('Desc_group_type'));
     var group = type_dim.group();
-   // var incident_count = name_dim.group().reduceSum(dc.pluck("Incident_Counter"));
+  
   
         dc.barChart("#Fire-by-all-incidents")
         
         .width(1200)
         .height(400)
-        .margins({ top: 10, right: 50, bottom: 200, left: 50 })
+        .margins({ top: 10, right: 50, bottom: 150, left: 50 })
         .elasticY(false)
         .dimension(type_dim)
         .group(group)
         .transitionDuration(500)//how quickly chart animates when filtered
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
-        .xAxisLabel("INCIDENT TYPE")
+        .xAxisLabel("INCIDENT DESCRIPTION TYPE")
         .renderHorizontalGridLines(true)
         .renderVerticalGridLines(true)
+        .title(function(d) {return (d.key + " : " + d.value + " Reported Incidents"); })
         .yAxis().ticks(10);
-       //  .title(function(d) { return ((d.value / 38552) * 100).toFixed(2) + "% - " + d.value + " Reported Incidents" + " by: " + d.key; });
+      
 }
 
 
@@ -359,7 +358,7 @@ function show_fire_by_description(ndx) {
     
 
          dc.rowChart("#Fire-by-description")
-        .width(550)
+        .width(600)
         .height(300)
         .margins({top: 10, right: 50, bottom: 30, left: 50})
         .dimension(dim)
@@ -367,7 +366,7 @@ function show_fire_by_description(ndx) {
         .transitionDuration(500)//how quickly chart animates when filtered
         .cap(10) //limit to top 10 records
         .othersGrouper(false) // exclude grouped 'others'
-       
+        .title(function(d) {return (d.key + " : " + d.value + " Reported Incidents"); })
 }
 
 function show_fire_by_area10(ndx) {
@@ -377,14 +376,16 @@ function show_fire_by_area10(ndx) {
 
     
          dc.rowChart("#Fire-by-area10")
-        .width(550)
+        .width(600)
         .height(300)
         .margins({top: 10, right: 50, bottom: 30, left: 50})
         .dimension(dim)
         .group(group)
         .transitionDuration(500)//how quickly chart animates when filtered
         .cap(10) //limit to top 10 records
-       .othersGrouper(false) // exclude grouped 'others'
+        .title(function(d) {return (d.key + " : " + d.value + " Reported Incidents"); })
+       .othersGrouper(false); // exclude grouped 'others'
+        
 }
 
 
@@ -410,14 +411,15 @@ function show_fire_by_area10(ndx) {
         var fireByMonth = date_dim.group().reduceSum(incident_by_service_type('FIRE'));
         
         dc.lineChart("#Fire-by-date")
-            .width(1100)
-            .height(300)
-            .margins({top: 10, right: 50, bottom: 30, left: 50})
+            .width(1200)
+            .height(350)
+            .margins({top: 10, right: 50, bottom: 50, left: 50})
             .dimension(date_dim)
             .group(total_count_per_date)
             .transitionDuration(500)
             .x(d3.time.scale().domain([minDate,maxDate]))
-            .xAxisLabel("Year")
+            .xAxisLabel("YEAR")
+            .yAxisLabel("INCIDENTS")
              .title(function(d) { return timeFormat(d.key) + " - " + d.value + " reported incidents"; })
              .renderTitle(true)
              .mouseZoomable(false)
@@ -434,11 +436,13 @@ function show_fire_by_area10(ndx) {
        
         var compositeChart = dc.compositeChart('#Fire-by-date-composite');
         compositeChart
-            .width(1100)
-            .height(300)
+            .width(1200)
+            .height(350)
+            .margins({top: 10, right: 50, bottom: 50, left: 50})
             .dimension(date_dim)
             .x(d3.time.scale().domain([minDate, maxDate]))
-            .yAxisLabel("Incident")
+            .xAxisLabel("YEAR")
+            .yAxisLabel("INCIDENTS")
             .title(function(d) { return timeFormat(d.key) + " - " + d.value + " reported incidents"; })
             .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
             .renderHorizontalGridLines(true)
@@ -469,9 +473,9 @@ function show_fire_by_area10(ndx) {
         
         
         dc.barChart("#Fire-by-time")
-        .width(550)
+        .width(600)
         .height(300)
-        .margins({top: 10, right: 50, bottom: 30, left: 50})
+        .margins({top: 10, right: 50, bottom: 50, left: 50})
         .dimension(time_dim)
         .group(total_count_per_time)
         //.title(function(d) { return timeFormat(d.key) + " - " + d.value + " reported incidents"; })
@@ -541,12 +545,13 @@ function show_fire_by_area10(ndx) {
         var dayOfWeekGroup = dayOfWeek.group();
       
          dc.rowChart("#Fire-by-day")
-        .width(550)
+        .width(600)
         .height(300)
         .margins({top: 10, right: 50, bottom: 30, left: 50})
         .dimension(dayOfWeek)
         .group(dayOfWeekGroup)
-        .transitionDuration(500)//how quickly chart animates when filtered
+        .title(function(d) { return ((d.value / 38552) * 100).toFixed(2) + "% - " + d.value + " Reported Incidents" + " on " + d.key; })
+        .transitionDuration(500);//how quickly chart animates when filtered
        
 
 }
