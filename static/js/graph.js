@@ -291,7 +291,7 @@ function show_incidents_that_are_special(ndx) {
     var name_dim = ndx.dimension(dc.pluck('Station_Area'));
     //var group = name_dim.group();
     var incident_count = name_dim.group().reduceSum(dc.pluck("Incident_Counter"));
-    var countChart = dc.dataCount;
+    
   
         dc.barChart("#Fire-by-area")
         .width(800)
@@ -305,7 +305,8 @@ function show_incidents_that_are_special(ndx) {
         .xAxisLabel("FIRE STATION AREA")
         .renderHorizontalGridLines(true)
         .renderVerticalGridLines(true)
-        .title(function(d) {return (d.key + " : " + d.value + " Reported Incidents"); })
+      //  .title(function(d) {return (d.key + " : " + d.value + " Reported Incidents"); })
+        .title(function(d) { return ((d.value / 38552) * 100).toFixed(2) + "% - " + d.value + " Reported Incidents" + " at " + d.key; })
         .yAxis().ticks(20);
 }
 
