@@ -460,7 +460,7 @@ function show_fire_by_area10(ndx) {
         
      
        
-  /* ********* INCIDENTS BY TIME OF DAY **********  */ 
+  /* ********* INCIDENTS BY DAY OF THE WEEK **********  */ 
 
       function show_fire_by_day(ndx) {
         var dayOfWeek = ndx.dimension(function (d) {

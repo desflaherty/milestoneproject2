@@ -168,24 +168,26 @@ section {
    font-size: 12px;
 }
 
-/*-------------------------------dc chart default settings*/
+/*--------CHART SETTINGS---------------*/
 
 .dc-chart {
    background-color: transparent;
 }
 
+/* Rotate labels on graphs */
 .text .x.axis text {
    transform: rotate(60deg);
    font-weight: bold;
 }
 
+/* label colors */
 .dc-chart g.row text {
    fill: black;
    font-weight: bold;
 }
 
 
-
+/* grid line */
 .dc-chart .grid-line line {
    stroke: #000;
 }
@@ -217,5 +219,9 @@ text .y-axis-label .y-label {
 
 .footer-text {
    color:#FFF;
+}
+
+.author-text {
+   
 }
 
