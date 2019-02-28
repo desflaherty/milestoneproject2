@@ -92,7 +92,6 @@ section {
 }
 
 
-/*-------------------------------------------------*/
 
 /*--------------BUTTONS---------------------------*/
 
@@ -176,9 +175,7 @@ section {
 }
 
 .text .x.axis text {
-   text-anchor: start !important;
    transform: rotate(60deg);
-   fill: #000;
    font-weight: bold;
 }
 
@@ -197,24 +194,18 @@ text .y-axis-label .y-label {
    font-weight: bold !important;
 }
 
-.empty-chart {
-   display: none;
-}
+
 
 .x-axis-label,
 .y-axis-label {
    font-weight: bold;
 }
 
-.dc-chart rect.bar {}
 
 .chart_display {
    position: absolute;
    z-index: 1;
-
-
 }
-
 
 .text .x.axis text {
    text-anchor: start !important;

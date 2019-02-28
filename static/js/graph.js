@@ -18,25 +18,11 @@ var ndx =crossfilter(fireData);
 //converting from a string into a date format, and formatting as year only
 //to display in select menu drop down list as 2013,2014,2015
 
-
-
-
-
        var parseDate = d3.time.format("%d-%m-%y").parse;
        var parseTime = d3.time.format("%H:%M:%S").parse;
        var parseHour = d3.time.format("%H");
        var parseMonth = d3.time.format("%b");
        
-     
-    /*
-       var countChart = dc.dataCount("#total_incidents");
-           countChart
-           .dimension(ndx)
-           .group(ndx.groupAll());
-      */
-      
-       
-         
             fireData.forEach(function(d){
             d.Incident_Counter = parseInt(d.Incident_Counter); // parsing the incident count key from text to a number.
             d.Date = parseDate(d.Date);
@@ -48,14 +34,9 @@ var ndx =crossfilter(fireData);
 
 
              
-      
- 
-
-        
         show_area_selector(ndx);
         show_type_selector(ndx);
         show_year_selector(ndx);
-        
         totalIncidentCount(ndx);
         show_incidents_that_are_fire(ndx);
         show_incidents_that_are_special(ndx);
@@ -66,12 +47,8 @@ var ndx =crossfilter(fireData);
         show_fire_by_area10(ndx);
         show_fire_by_time(ndx);
        // show_fire_by_group(ndx);//
-        show_percentage_Incidents(ndx, "Fri", "#percentFri");
-        show_percentage_Incidents(ndx, "Sat", "#percentSat");
         show_fire_by_day(ndx);
         //show_fire_by_month(ndx);//
-        
-        
         dc.renderAll(); //call to render dimensional charting
         
     }
@@ -79,8 +56,7 @@ var ndx =crossfilter(fireData);
  
    
    
-   
-   
+  /* ********* AREA MENU DROPDOWN **********  */ 
    
    function show_area_selector(ndx){
     var dim = ndx.dimension(dc.pluck('Station_Area'));
@@ -93,7 +69,7 @@ var ndx =crossfilter(fireData);
    }
    
   
-    
+   /* ********* CALL TYPE DROPDOWN **********  */  
    
     function show_type_selector(ndx){
     var dim = ndx.dimension(dc.pluck('Desc_group'));
@@ -104,6 +80,8 @@ var ndx =crossfilter(fireData);
         .title(function(d) { return d.key; })
         .promptText('Incident Type');
    }
+   
+   /* ********* YEAR MENU DROPDOWN **********  */ 
    
    function show_year_selector(ndx,Year)
     {
@@ -206,7 +184,7 @@ var ndx =crossfilter(fireData);
     }
     */
     
-    
+  /* ********* TOTAL INCIDENT COUNTER **********  */   
     
     function totalIncidentCount(ndx){
     
@@ -231,6 +209,7 @@ var ndx =crossfilter(fireData);
      .valueAccessor(function(d) { return d.total; });
     }
     
+  /* ********* FIRE INCIDENT COUNTER **********  */     
     
     function show_incidents_that_are_fire(ndx) {
     var incidentsThatAreFire = ndx.groupAll().reduce(
@@ -258,6 +237,7 @@ var ndx =crossfilter(fireData);
         .valueAccessor(function(d) { return d.are_fire; });
     }
         
+  /* ********* SPECIAL SERVICE INCIDENT COUNTER **********  */ 
 
 function show_incidents_that_are_special(ndx) {
     var incidentsThatAreSpecial = ndx.groupAll().reduce(
@@ -286,13 +266,12 @@ function show_incidents_that_are_special(ndx) {
     }
     
     
+  /* ********* STATION BARCHART **********  */     
 
     function show_fire_by_area(ndx) {
     var name_dim = ndx.dimension(dc.pluck('Station_Area'));
     var group = name_dim.group();
-    //var incident_count = name_dim.group().reduceSum(dc.pluck("Incident_Counter"));
-    
-  
+   
         dc.barChart("#Fire-by-area")
         .width(800)
         .height(300)
@@ -303,23 +282,18 @@ function show_incidents_that_are_special(ndx) {
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
         .xAxisLabel("FIRE STATION AREA")
-      //  .title(function(d) {return (d.key + " : " + d.value + " Reported Incidents"); })
         .title(function(d) { return ((d.value / 38552) * 100).toFixed(2) + "% - " + d.value + " Reported Incidents" + " at " + d.key; })
         .yAxis().ticks(20);
 }
 
-
-
-
-
-
+ /* ********* ALL INCIDENTS BARCHART **********  */  
+ 
   function show_fire_by_all_incidents(ndx) {
     var type_dim = ndx.dimension(dc.pluck('Desc_group_type'));
     var group = type_dim.group();
   
   
         dc.barChart("#Fire-by-all-incidents")
-        
         .width(1200)
         .height(400)
         .margins({ top: 10, right: 50, bottom: 150, left: 50 })
@@ -337,7 +311,7 @@ function show_incidents_that_are_special(ndx) {
       
 }
 
-
+ /* ********* TOP 10 DESCRIPTION TYPE ROWCHART**********  */ 
 
 
 function show_fire_by_description(ndx) {
@@ -345,7 +319,7 @@ function show_fire_by_description(ndx) {
     var group = dim.group();
     
     //creating a fake filtered group to exlude incidents in the dataset that have not been entered with a 'type of incident' description
-    var filtered_group = remove_not_specified(group)
+    var filtered_group = remove_not_specified(group);
     function remove_not_specified(Desc_group_type) {
     return {
         all:function () {
@@ -369,11 +343,12 @@ function show_fire_by_description(ndx) {
         .title(function(d) {return (d.key + " : " + d.value + " Reported Incidents"); })
 }
 
+
+/* ********* TOP 10 STATION AREA ROWCHART **********  */ 
+
 function show_fire_by_area10(ndx) {
     var dim = ndx.dimension(dc.pluck('Station_Area'));
     var group = dim.group();
-    
-
     
          dc.rowChart("#Fire-by-area10")
         .width(600)
@@ -388,11 +363,11 @@ function show_fire_by_area10(ndx) {
         
 }
 
+/* ********* TIMELINE CHART**********  */ 
 
      function show_fire_by_date(ndx) {
         var date_dim = ndx.dimension(dc.pluck('Date'));
         var total_count_per_date = date_dim.group().reduceSum(dc.pluck('Incident_Counter'));
-       
        var minDate = date_dim.bottom(1)[0].Date;
        var maxDate = date_dim.top(1)[0].Date;
        var timeFormat = d3.time.format("%a %e/%m/%Y");
@@ -432,8 +407,6 @@ function show_fire_by_area10(ndx) {
             .yAxis().ticks(4);
            
         
-        
-       
         var compositeChart = dc.compositeChart('#Fire-by-date-composite');
         compositeChart
             .width(1200)
@@ -449,7 +422,6 @@ function show_fire_by_area10(ndx) {
             .renderVerticalGridLines(true)
             .brushOn(false)
             
-            
             .compose([
                 dc.lineChart(compositeChart)
                     .colors('red')
@@ -463,14 +435,12 @@ function show_fire_by_area10(ndx) {
      }
      
      
+     /* ********* INCIDNETS BY TIME OF CALL **********  */ 
      
         function show_fire_by_time(ndx) {
         var time_dim = ndx.dimension(dc.pluck('TOC'));
         var total_count_per_time = time_dim.group().reduceSum(dc.pluck('Incident_Counter'));
         var timeFormat = d3.time.format("%H:%M:%S");
-        
-        
-        
         
         dc.barChart("#Fire-by-time")
         .width(600)
@@ -486,54 +456,11 @@ function show_fire_by_area10(ndx) {
         .xUnits(dc.units.ordinal)
         .xAxisLabel("24 Hour Time")
         .yAxis().ticks(20);
-       // .yAxis().tickFormat(d3.format(".3s"));
          }
         
-        
-  
-    
+     
        
-     function show_percentage_Incidents(ndx, day, dayOfPercentage) {
-
-    var dayFormat = d3.time.format("%a");
-    var daydim = ndx.dimension(dc.pluck('Date'));
-    var percentage = ndx.groupAll().reduce(
-
-        function(p, v) {
-            p.totalIncidentCount += v.Incident_Counter; 
-            if (dayFormat(v.Date) === day) { 
-                p.dayIncidentCount += v.Incident_Counter; 
-            }
-            return p;
-        },
-        function(p, v) {
-            p.totalIncidentCount -= v.Incident_Counter;
-            if (dayFormat(v.Date) === day) {
-                p.dayIncidentCount -= v.Incident_Counter;
-
-            }
-            return p;
-        },
-        function() {
-            return { totalIncidentCount: 0, dayIncidentCount: 0 };
-        }
-    );
-
-        dc.numberDisplay(dayOfPercentage)
-        .group(percentage)
-        .transitionDuration(2000)
-        .formatNumber(d3.format(".2%"))
-        .valueAccessor(function(d) {
-            if (d.totalIncidentCount == 0) { //If the count is 0 than return no value
-                return 0;
-            }
-            else {
-                return (d.dayIncidentCount / d.totalIncidentCount); 
-            }
-        });
-        
-     }
-
+  /* ********* INCIDENTS BY TIME OF DAY **********  */ 
 
       function show_fire_by_day(ndx) {
         var dayOfWeek = ndx.dimension(function (d) {
