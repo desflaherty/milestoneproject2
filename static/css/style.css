@@ -124,6 +124,33 @@ section {
    text-decoration: none;
 }
 
+.scrollToTop{
+   color: #FFF;
+   text-decoration: none;
+   font-weight: bold;
+   opacity: .8;
+   display: inline-block;
+   padding: 5px 10px;
+   position: fixed;
+   background-color: #ff6000;
+   right: 30px;
+   bottom: 80px;
+   z-index: 2;
+   border-radius: 5px;
+}
+
+.scrollToTop:focus {
+   text-decoration: none;
+   color: #FFF;
+}
+.scrollToTop:hover{
+   background-color: #ce601e;
+   opacity: 1;
+   color: #FFF;
+   text-decoration: none;
+}
+
+
 
 /*/////////////////////Incident Counter///////////////////////////////////////*/
 
