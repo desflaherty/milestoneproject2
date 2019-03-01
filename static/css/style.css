@@ -1,8 +1,13 @@
 body {
-   background-color: #5f0a0a;
-   color: #FFF;
+   /*background-color: #5f0a0a;*/
+   background-color: #F5F5F5;
+   /*color: #FFF;*/
+   
+   color:#000000;
    font-family: 'Abel', sans-serif;
 }
+
+
 
 
 
@@ -10,12 +15,12 @@ body {
 
 section {
    padding-bottom: 50px;
-   background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-   url("../images/fire_dept_doors.jpg");
+  /* background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))
+   url("../images/fire_high_res.jpg");
    background-size: contain;
    background-attachment: fixed;
    background-position: top;
-
+*/
 }
 
 .container-bg {
@@ -61,8 +66,8 @@ section {
 .menu-header {
    /*background-color: #ff9a18d6;*/
    /* background-color: #fcff18cf;*/
-   background-color: #ffed18cc;
-
+  /* background-color: #ffed18cc;*/
+   background-color:#000000;
    border-bottom: 2px solid grey;
    margin-top: 20px;
    color: #FFF;
@@ -72,10 +77,15 @@ section {
 .chart-outer-container {
    overflow: hidden;
    border: 1px solid #000;
-   overflow-x: scroll; /* Allows scrolling of charts on mobile */
 }
 
-
+/*
+@media (max-width: 1165px) {
+   .chart-outer-container {
+      overflow-x: scroll;
+   }
+}
+*/
 
 /*/////////////////////MENU SELECTORS//////////////////////////////////////*/
 
