@@ -10,25 +10,23 @@ queue()
     
 //data will be passed into variable fireData by queue.min.js  
 //creating crossfilter
-
-
 function makeGraphs(error, fireData) {
 var ndx =crossfilter(fireData);
  
-//converting from a string into a date format, and formatting as year only
-//to display in select menu drop down list as 2013,2014,2015
-
        var parseDate = d3.time.format("%d-%m-%y").parse;
        var parseTime = d3.time.format("%H:%M:%S").parse;
        var parseHour = d3.time.format("%H");
-       var parseMonth = d3.time.format("%b");
-       
+      // var parseMonth = d3.time.format("%b");
+ 
+ //converting from a string into a date format, and formatting as year only
+//to display in select menu drop down list as 2013,2014,2015
+
             fireData.forEach(function(d){
             d.Incident_Counter = parseInt(d.Incident_Counter); // parsing the incident count key from text to a number.
             d.Date = parseDate(d.Date);
             d.TOC = parseHour(parseTime(d.TOC));
             d.Year = d.Date.getFullYear();
-            d.Month = parseMonth(d.Date);
+         //   d.Month = parseMonth(d.Date);
             
 });
 
@@ -49,6 +47,8 @@ var ndx =crossfilter(fireData);
        // show_fire_by_group(ndx);//
         show_fire_by_day(ndx);
         //show_fire_by_month(ndx);//
+        
+        
         dc.renderAll(); //call to render dimensional charting
         
     }
@@ -235,9 +235,12 @@ var ndx =crossfilter(fireData);
         .transitionDuration(1700)
         .formatNumber(d3.format("2f"))
         .valueAccessor(function(d) { return d.are_fire; });
+       
+        
     }
         
   /* ********* SPECIAL SERVICE INCIDENT COUNTER **********  */ 
+
 
 function show_incidents_that_are_special(ndx) {
     var incidentsThatAreSpecial = ndx.groupAll().reduce(
@@ -258,12 +261,13 @@ function show_incidents_that_are_special(ndx) {
         },
     );
     
-    dc.numberDisplay("#totalspecial_incidents")
+         dc.numberDisplay("#totalspecial_incidents")
         .group(incidentsThatAreSpecial)
         .transitionDuration(1700)
         .formatNumber(d3.format("2f"))
         .valueAccessor(function(d) { return d.are_special; });
     }
+    
     
     
   /* ********* STATION BARCHART **********  */     
@@ -397,7 +401,7 @@ function show_fire_by_area10(ndx) {
             .yAxisLabel("INCIDENTS")
              .title(function(d) { return timeFormat(d.key) + " - " + d.value + " reported incidents"; })
              .renderTitle(true)
-             .mouseZoomable(false)
+             .mouseZoomable(true)
             .renderHorizontalGridLines(true)
             .renderVerticalGridLines(true)
             .brushOn(false)
@@ -421,6 +425,7 @@ function show_fire_by_area10(ndx) {
             .renderHorizontalGridLines(true)
             .renderVerticalGridLines(true)
             .brushOn(false)
+            .mouseZoomable(true)
             
             .compose([
                 dc.lineChart(compositeChart)
@@ -440,7 +445,7 @@ function show_fire_by_area10(ndx) {
         function show_fire_by_time(ndx) {
         var time_dim = ndx.dimension(dc.pluck('TOC'));
         var total_count_per_time = time_dim.group().reduceSum(dc.pluck('Incident_Counter'));
-        var timeFormat = d3.time.format("%H:%M:%S");
+        //var timeFormat = d3.time.format("%H:%M:%S");
         
         dc.barChart("#Fire-by-time")
         .width(600)

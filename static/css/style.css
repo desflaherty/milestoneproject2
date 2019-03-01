@@ -72,7 +72,7 @@ section {
 .chart-outer-container {
    overflow: hidden;
    border: 1px solid #000;
-
+   overflow-x: scroll; /* Allows scrolling of charts on mobile */
 }
 
 
@@ -208,6 +208,8 @@ text .y-axis-label .y-label {
    position: absolute;
    z-index: 1;
 }
+
+
 
 .text .x.axis text {
    text-anchor: start !important;
