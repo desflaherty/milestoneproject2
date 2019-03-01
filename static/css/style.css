@@ -1,26 +1,13 @@
 body {
-   /*background-color: #5f0a0a;*/
    background-color: #F5F5F5;
-   /*color: #FFF;*/
-   
    color:#000000;
    font-family: 'Abel', sans-serif;
 }
-
-
-
-
 
 /*---------PAGE SETTINGS-----------------------------------*/
 
 section {
    padding-bottom: 50px;
-  /* background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))
-   url("../images/fire_high_res.jpg");
-   background-size: contain;
-   background-attachment: fixed;
-   background-position: top;
-*/
 }
 
 .container-bg {
@@ -29,7 +16,6 @@ section {
    margin-right: auto;
    margin-left: auto;
 }
-
 
 
 .inline-block {
@@ -50,7 +36,6 @@ section {
   
 }
 
-
 .menu-dropdown {
    background-color: rgba(255, 255, 255, 0.8);
    padding: 20px;
@@ -64,9 +49,6 @@ section {
 
 
 .menu-header {
-   /*background-color: #ff9a18d6;*/
-   /* background-color: #fcff18cf;*/
-  /* background-color: #ffed18cc;*/
    background-color:#000000;
    border-bottom: 2px solid grey;
    margin-top: 20px;
@@ -159,14 +141,12 @@ section {
    text-decoration: none;
 }
 
-
-
 /*/////////////////////Incident Counter///////////////////////////////////////*/
 
 .dc-data-count-l {
    font-size: 55px;
    padding: 16px 115px;
-   color: #0f4d93;
+   color: #ff6000;
 }
 
 .dc-data-count-s {
@@ -179,6 +159,8 @@ section {
 }
 
 /*--------CHART SETTINGS---------------*/
+
+
 
 .dc-chart {
    background-color: transparent;
@@ -207,7 +189,6 @@ text .y-axis-label .y-label {
 }
 
 
-
 .x-axis-label,
 .y-axis-label {
    font-weight: bold;
@@ -219,8 +200,6 @@ text .y-axis-label .y-label {
    z-index: 1;
 }
 
-
-
 .text .x.axis text {
    text-anchor: start !important;
    transform: rotate(60deg);
@@ -228,12 +207,15 @@ text .y-axis-label .y-label {
    font-weight: bold;
 }
 
+/*--------FOOTER TEXT---------------*/
 
 .footer-text {
-   color:#FFF;
+   font-weight: bold;
+   font-size:14px;
 }
 
 .author-text {
-   
+   font-size:20px;
+   font-weight: bold;
 }
 
