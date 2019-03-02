@@ -135,16 +135,29 @@
                     </div>
                 </div>
             </div>
+            
+            
             <div class="col-sm-12 col-md-12 col-lg-6 text-center">
-                <div class="chart_display"></div>
+              
                 <div class="menu-header">
-                    <h5>Top 10 Incidents by Description</h5>
+                <h5>Top 10 Incidents by Description</h5>
+                 <div class="info-container">
+                        <i class="fa fa-info-circle" style="font-size:20px"></i>
+                        <p class="info-container-hidden">Displays Top 10 Incident Types by Call Out 
+                        <br>You can use the Filter buttons to choose Type of Call Out 'Fire'
+                        <br>or 'Special Service' and the Top 10 for each will be displayed.
+                        </p>
+                    </div>
                 </div>
+                    
+                    
+                    
                 <div class="chart-outer-container menu-dropdown">
                     <div class="inline-block">
                         <div id="Fire-by-description" class="text"></div>
                     </div>
                 </div>
+                
             </div>
         </div>
         <!-- *************************CLOSE ROW THREE******************************************-->
@@ -209,16 +222,25 @@
 
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-6 text-center">
-                <div class="chart_display"></div>
+                
                 <div class="menu-header">
                     <h5>Time of Incident Calls - Displayed by the Hour</h5>
+                <div class="info-container">
+                        <i class="fa fa-info-circle" style="font-size:20px"></i>
+                        <p class="info-container-hidden">Displays Time of Call to the nearest hour 
+                        <br>For example any calls from 20:00 to 21:00 will be displayed
+                        <br>under 20:00, the count shows the calls over the following hour.
+                        </p>
+                    </div>
                 </div>
+                
+                
                 <div class="chart-outer-container menu-dropdown">
                     <div class="inline-block">
                         <div id="Fire-by-time" class="text"></div>
                     </div>
                 </div>
-            </div>
+                </div>
             <div class="col-sm-12 col-md-12 col-lg-6 text-center">
                 <div class="menu-header">
                     <h5>Day of Incident Calls - Ordered by Highest Volume</h5>
@@ -242,7 +264,7 @@
                     <a target="_blank" href="https://data.gov.ie/dataset/fire-brigade-and-ambulance">https://data.gov.ie/dataset/fire-brigade-and-ambulance</a>
                     <br>
                 Published by: 
-                <a target "_blank" href="https://data.gov.ie/organization/dublin-city-council">
+                <a target="_blank" href="https://data.gov.ie/organization/dublin-city-council">
                 Dublin City Council</a>
                 <br>
                 Licensed under:
@@ -263,7 +285,7 @@
     <script src="static/js/dc.min.js"></script>
     <script src="static/js/queue.min.js"></script>
     <script src="static/js/graph.js"></script>
-    <script src="static/js/jqueryscript.js"></script>
+    <script src="static/js/jquery.js"></script>
 
 </body>
 
