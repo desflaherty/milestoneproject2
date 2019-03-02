@@ -1,21 +1,70 @@
 
-# Project Name: Dashboard showing Fire Brigade Call Out Activity in the Dublin Area.
+# Project Name: A Dashboard showing Fire Brigade Call Out Activity in the Dublin Area.
 
 
-One or two paragraphs providing an overview of your project.
+I wanted to develop a project that used an Irish dataset to make it more interesting
+for me. The main Irish websites that provide open data are the Central Statistics Office https://www.cso.ie/en/databases/
+and the Data Gov site https://data.gov.ie/. After reviewing both sites I came accross the Fire & Ambulance datasets available at
+https://data.gov.ie/dataset/fire-brigade-and-ambulance. The Dublin Fire Brigade dataset had some interesting data recorded and
+as far as I am aware there there are no existing showcases on the Data Gov website thus far using this dataset,so this is why I
+decided to develop a dashboard using this data for the second milestone project. The most recent data available was for the 2013-2015
+time period. The data portal was contacted via email to seek a more updated record source and I did receive a reply that the Dublin Fire
+Brigade would provide another updated dataset but there are no timelines when this could be delivered so the project was developed with
+the most recent data available.
 
-Essentially, this part is your sales pitch.
 
-UX
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
+# # UX
+*Strategy:* 
+The intention of the project would be to use custom visualizations in order to provide insight on the incidents reported by
+the fire services in the Dublin area over a 3 year period from 2013-2015. Public Safety is an area that is of interest and
+concern to the general public as a whole, yet from my research in this area I have not been able to locate resources
+that would show fire call outs in a easily digestible format such as in an interactive dashboard.
+This project is intended to provide insight into this area for public consumption as it showcases the work being done by the
+emergency services to ensure the safety of the public in Dublin.
+The project would aim to provide learnings that can be implemented by the planners of Dublin Fire Brigade (DBF) to allocate resources.
+Insights gained from using the dashboard could highlight peak times of the day for call outs,
+problem times of the year i.e Halloween, areas with highest call out frequency, and additional special requests
+that DBF provide. 
 
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
+*User Stories:*
 
-As a user type, I want to perform an action, so that I can achieve a goal.
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
+As a planner or senior executive in DBF - (also relevant to interested parties in other Gov agencies or general member of the public): 
+* be able to use filter menus to navigate the dataset,
+* be able to view total amount of call out incidents contained in the dataset
+* have a graphical display of total call outs by area
+* which areas and incidents are generating the most call outs
+* a time line of call out activity to highlight spikes in the year such as Halloween
+* have a view of peak time and day of calls
+* be able to interact with these visualizations by filtering on different areas of interest that would help generate insight
 
-Features
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
+A mockups for the proposed dashboard layout and metrics can be found in the project folder on github
+https://github.com/desflaherty/milestoneproject2/tree/master/wireframe.
+
+*Data Cleaning:*
+
+After an examination of the dataset I decided which fields would be used and also if there was any data formatting neeeded prior to project
+development.
+
+The fields used in the project were:
+'Date': Displays Date of Call in the format 'dd-mm-yy'
+'Station Area': Text field containing the Fire Station Areas where data was collected
+'Desc_group': This field was derived from the 'Description' field contained in the original dataset to make the graphing process easier.
+The field contains the Incident Type splits by 'Fire' or 'Special Service'.
+'Desc_group_type': This field was derived from the 'Description' field. The original dataset used coded values that would not have been
+descriptive enough to display on charts in the project. A lookup table that was provided with the dataset was used to create this field.
+For example where the original data set would have used 'S/S GRDASS', this was captured in two fields 'Special Service', 'Garda Assistance'.
+'TOC': Displayes the Time of Call in the format 'hh:mm:ss AM'
+'Incident Counter': An integer field derived for graphing purposes.
+
+The additional fields provided in the original dataset were not used in the project as they were deemed to be irrelevant
+to the project or the data was of a poor quality with a lot of missing values contained in the recordset.
+
+
+
+
+# # Features
+* Three Drop down menus are displayed at the top of the dashboard. These enable the user to filter the data by 'Station Area',
+'Incident type' and 'Year'.
 
 Existing Features
 Feature 1 - allows users X to achieve Y, by having them fill out Z
