@@ -62,22 +62,22 @@ to the project or the data was of a poor quality with a lot of missing values co
 
 # # Existing Features
 * Three Drop down menus are displayed at the top of the dashboard. These enable the user to filter the data by 'Station Area','Incident type' and 'Year'.
-*A number counter to display total reported incidents. The counter will update dynamically when data is filtered using menu dropdowns or charts.
-*A number counter to display 'fire' reported incidents.
-*A number counter to display 'special service' reported incidents.
-*A bar chart to display total incidents by area. Each area can be selected and a filter will be updated across the dashboard.
-*A row chart displaying the Top 10 areas by incident volume.
-*A row chart displaying the Top 10 incident types/
-*A bar chart displaying all incident types.
-*A line chart displaying a time line of recorded incidents by year and month. A zoomable feature allows zooming to day also.
-*A composite line chart to show splits of 'fire' and 'special service' across year and month.
-*A bar chart showing call volume by 24 hour time range.
-*A row chart displaying volume of incidents by day.
-*A reset button to allow the user to reset the filters chosen.
-*A back to top button to scroll the page back to the top for easier navigation.
-*JQuery Tooltips are used for two graphs to explain how they can be used correctly or for interpretation of the information. The
-*charts with Tooltips are the 'Incident by Time' and 'Top 10 Incidnet by description'. Other charts are self-explanatory so no Tooltip is used.
-*Other charts use D3 tooltips and have information dispalyed in a easily interpreted way.
+* A number counter to display total reported incidents. The counter will update dynamically when data is filtered using menu dropdowns or charts.
+* A number counter to display 'fire' reported incidents.
+* A number counter to display 'special service' reported incidents.
+* A bar chart to display total incidents by area. Each area can be selected and a filter will be updated across the dashboard.
+* A row chart displaying the Top 10 areas by incident volume.
+* A row chart displaying the Top 10 incident types/
+* A bar chart displaying all incident types.
+* A line chart displaying a time line of recorded incidents by year and month. A zoomable feature allows zooming to day also.
+* A composite line chart to show splits of 'fire' and 'special service' across year and month.
+* A bar chart showing call volume by 24 hour time range.
+* A row chart displaying volume of incidents by day.
+* A reset button to allow the user to reset the filters chosen.
+* A back to top button to scroll the page back to the top for easier navigation.
+* JQuery Tooltips are used for two graphs to explain how they can be used correctly or for interpretation of the information. The
+* charts with JQuery Tooltips are the 'Incident by Time' and 'Top 10 Incidnet by description'. Other charts are self-explanatory so no Tooltip is used.
+* Other charts use D3 tooltips and have information dispalyed in a easily interpreted way.
 
 # # Features Left to Implement
 If an updated recordset can be sourced data for the time range 2016-2018 can be added to the project.
