@@ -112,7 +112,7 @@ Google Chrome developer was also used.
 Devices tested on include: Galaxy S5, iPhone 5/SE, iPhone 6/7/8, iPhone 6/7/8 Plus, iPhone X, iPad, iPad Pro, Desktop PC. 
 Browsers tested were Google Chrome,Internet Explorer and Firefox. Also the Safari browser on iPhone.
 
-Although D3 is made for desktop media queries were introduced with a scroll allow value in the CSS file so that the charts can be
+Although D3 is made for desktop, media queries were introduced with a scroll allow value in the CSS file so that the charts can be
 scrolled across on smaller device screens such as mobile.
 
 The criteria used for testing included:
@@ -163,8 +163,6 @@ Sample test script:
 * Choose a weekday on day of week row chart and ensure the timeline chart only displys this day.
 * Use reset button to refresh the data.
 
-* 
-
 * Test external HTML links in the footer to ensure they function and open in a new webpage.
 
 
@@ -177,6 +175,14 @@ On Ipad there is a empty space to the right of the incident counters as the stat
 counters. If the station area chart was aligned to the right of the counters it would look squashed as only part of the chart would be visible
 and so this appearance was left as it is.
 
+Internet Explorer does not display the dashboard charts.
+
+A mouseover is used in the JQuery file to control the JQuery tooltip. This works as expected when using a mouse on desktop however on mobile
+devices the Info Icon has to be pressed to appear so does not then disappear. The reset button would need to be clicked for the Tooltip to 
+disappear from being displayed on top of the chart.
+
+The D3 tooltips don't appear on mobile as rollover functionality is not available. As these charts were developed for deskttop this functionality is
+as expected.
 
 
 Go to the "Contact Us" page
