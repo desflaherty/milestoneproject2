@@ -46,37 +46,55 @@ After an examination of the dataset I decided which fields would be used and als
 development.
 
 The fields used in the project were:
-'Date': Displays Date of Call in the format 'dd-mm-yy'
-'Station Area': Text field containing the Fire Station Areas where data was collected
-'Desc_group': This field was derived from the 'Description' field contained in the original dataset to make the graphing process easier.
+* 'Date': Displays Date of Call in the format 'dd-mm-yy'
+* 'Station Area': Text field containing the Fire Station Areas where data was collected
+* 'Desc_group': This field was derived from the 'Description' field contained in the original dataset to make the graphing process easier.
 The field contains the Incident Type splits by 'Fire' or 'Special Service'.
-'Desc_group_type': This field was derived from the 'Description' field. The original dataset used coded values that would not have been
+* 'Desc_group_type': This field was derived from the 'Description' field. The original dataset used coded values that would not have been
 descriptive enough to display on charts in the project. A lookup table that was provided with the dataset was used to create this field.
 For example where the original data set would have used 'S/S GRDASS', this was captured in two fields 'Special Service', 'Garda Assistance'.
-'TOC': Displayes the Time of Call in the format 'hh:mm:ss AM'
-'Incident Counter': An integer field derived for graphing purposes.
+* 'TOC': Displayes the Time of Call in the format 'hh:mm:ss AM'
+* 'Incident Counter': An integer field derived for graphing purposes.
 
 The additional fields provided in the original dataset were not used in the project as they were deemed to be irrelevant
 to the project or the data was of a poor quality with a lot of missing values contained in the recordset.
 
 
-
-
-# # Features
+# # Existing Features
 * Three Drop down menus are displayed at the top of the dashboard. These enable the user to filter the data by 'Station Area',
 'Incident type' and 'Year'.
+*A number counter to display total reported incidents. The counter will update dynamically when data is filtered using menu dropdowns or charts.
+*A number counter to display 'fire' reported incidents.
+*A number counter to display 'special service' reported incidents.
+*A bar chart to display total incidents by area. Each area can be selected and a filter will be updated across the dashboard.
+*A row chart displaying the Top 10 areas by incident volume.
+*A row chart displaying the Top 10 incident types/
+*A bar chart displaying all incident types.
+*A line chart displaying a time line of recorded incidents by year and month. A zoomable feature allows zooming to day also.
+*A composite line chart to show splits of 'fire' and 'special service' across year and month.
+*A bar chart showing call volume by 24 hour time range.
+*A row chart displaying volume of incidents by day.
+*A reset button to allow the user to reset the filters chosen.
+*A back to top button to scroll the page back to the top for easier navigation.
 
-Existing Features
-Feature 1 - allows users X to achieve Y, by having them fill out Z
-...
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
+# # Features Left to Implement
+If an updated recordset can be sourced data for the time range 2016-2018 can be added to the project.
+There is a field contained in the original dataset that records a time when the first fire brigade responded to the scence of a call.
+However the field contains a lot of missing values. If the data can be populated a 'response time' field could be derived by using the 
+'TOC' time of call field and this field. Average response time by area could also be derived.
 
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+# # Technologies Used
 
-Features Left to Implement
-Another feature idea
-Technologies Used
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
+* HTML5 -The webs core markup language used for creating content for the web. HTML5 is the 5th edition of the language. https://www.w3.org/TR/html52/
+* CSS  - Used in style.css. Style.css containes the stylesheet used to format the presentation of the website. 
+* Bootstrap 3.3.7  - An open source toolkit for developing with HTML, CSS and JS https://getbootstrap.com/
+* Javascript -An object-oriented computer programming language commonly used to create interactive effects within web browsers. https://developer.mozilla.org/bm/docs/Web/JavaScript
+* D3.JS - A JavaScript library for visualizing data using web standards. D3 combines powerful visualization and interaction techniques with a data-driven approach to DOM manipulation.https://d3js.org/
+* DC.JS - A Javascript charting library. It leverages D3 to render charts in CSS-friendly SVG format. Used to create the charts used in the dashboard.https://dc-js.github.io/dc.js/
+* Font Awesome - A font and icon toolkit based on CSS and LESS https://fontawesome.com/
+* Google Fonts -A library of fontsthat can be used in the website https://fonts.google.com/
+* JQuery - A JavaScript library used to simplify DOM manipulation. https://jquery.com/
+
 
 JQuery
 The project uses JQuery to simplify DOM manipulation.
