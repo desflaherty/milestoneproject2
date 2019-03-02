@@ -91,21 +91,34 @@ However the field contains a lot of missing values. If the data can be populated
 * Javascript -An object-oriented computer programming language commonly used to create interactive effects within web browsers. https://developer.mozilla.org/bm/docs/Web/JavaScript
 * D3.JS - A JavaScript library for visualizing data using web standards. D3 combines powerful visualization and interaction techniques with a data-driven approach to DOM manipulation.https://d3js.org/
 * DC.JS - A Javascript charting library. It leverages D3 to render charts in CSS-friendly SVG format. Used to create the charts used in the dashboard.https://dc-js.github.io/dc.js/
-* Font Awesome - A font and icon toolkit based on CSS and LESS https://fontawesome.com/
-* Google Fonts -A library of fontsthat can be used in the website https://fonts.google.com/
-* JQuery - A JavaScript library used to simplify DOM manipulation. https://jquery.com/
+* Font Awesome - A font and icon toolkit based on CSS and LESS. Used to display the info graphic used as a tooltip https://fontawesome.com/
+* Google Fonts -A library of fontsthat can be used in the website.https://fonts.google.com/
+* JQuery - A JavaScript library used to simplify DOM manipulation. Used to control the button features used in the project. https://jquery.com/
 
 
-JQuery
-The project uses JQuery to simplify DOM manipulation.
-Testing
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
 
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
+# #  Testing
 
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
+The index.html was checked with HTML validator https://validator.w3.org/#validate_by_input to remove 
+as all warnings and  all errors.
+The CSS style sheet was checked using http://csslint.net/. There were no errors but there are some warning messages returned.
+The Javascript file was checked using https://codebeautify.org/jsvalidate - some warnigns were returned.
 
-Contact form:
+Responsinator was used to check responsiveness of different devices - https://www.responsinator.com 
+Google Chrome developer was also used.
+
+Devices tested on include: Galaxy S5, iPhone 5/SE, iPhone 6/7/8, iPhone 6/7/8 Plus, iPhone X, iPad, iPad Pro, Desktop PC. 
+Browsers tested were Google Chrome,Internet Explorer and Firefox. Also the Safari browser on iPhone.
+
+
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+
 Go to the "Contact Us" page
 Try to submit the empty form and verify that an error message about the required fields appears
 Try to submit the form with an invalid email address and verify that a relevant error message appears
