@@ -61,8 +61,7 @@ to the project or the data was of a poor quality with a lot of missing values co
 
 
 # # Existing Features
-* Three Drop down menus are displayed at the top of the dashboard. These enable the user to filter the data by 'Station Area',
-'Incident type' and 'Year'.
+* Three Drop down menus are displayed at the top of the dashboard. These enable the user to filter the data by 'Station Area','Incident type' and 'Year'.
 *A number counter to display total reported incidents. The counter will update dynamically when data is filtered using menu dropdowns or charts.
 *A number counter to display 'fire' reported incidents.
 *A number counter to display 'special service' reported incidents.
@@ -76,6 +75,9 @@ to the project or the data was of a poor quality with a lot of missing values co
 *A row chart displaying volume of incidents by day.
 *A reset button to allow the user to reset the filters chosen.
 *A back to top button to scroll the page back to the top for easier navigation.
+*JQuery Tooltips are used for two graphs to explain how they can be used correctly or for interpretation of the information. The
+*charts with Tooltips are the 'Incident by Time' and 'Top 10 Incidnet by description'. Other charts are self-explanatory so no Tooltip is used.
+*Other charts use D3 tooltips and have information dispalyed in a easily interpreted way.
 
 # # Features Left to Implement
 If an updated recordset can be sourced data for the time range 2016-2018 can be added to the project.
@@ -110,13 +112,71 @@ Google Chrome developer was also used.
 Devices tested on include: Galaxy S5, iPhone 5/SE, iPhone 6/7/8, iPhone 6/7/8 Plus, iPhone X, iPad, iPad Pro, Desktop PC. 
 Browsers tested were Google Chrome,Internet Explorer and Firefox. Also the Safari browser on iPhone.
 
+Although D3 is made for desktop media queries were introduced with a scroll allow value in the CSS file so that the charts can be
+scrolled across on smaller device screens such as mobile.
+
+The criteria used for testing included:
+
+* Functionality
+* Navigation
+* Display
+
+The format used for testing can be viewed below. 
+
+| Feature         | Device        | Browser   | Result | 
+| -------------   |:------------- | :------   | :----- |
+| Area Menu       |IPhone         | Chrome    | Pass   |
+| Type Menu       |IPhone         | Chrome    | Pass   |
+| Year Menu       |IPhone         | Chrome    | Pass   |
+| Barchart1       |IPhone         | Chrome    | Pass   |
+| Barchart2       |IPhone         | Chrome    | Pass   |
+| Line Graph1     |IPhone         | Chrome    | Pass   |
+| Row Chart1      |IPhone         | Chrome    | Pass   |
+| Button1         |IPhone         | Chrome    | Pass   |
+| Area Menu       |Desktop        | Chrome    | Pass   |
+| Type Menu       |Desktop        | Chrome    | Pass   |
+| Year Menu       |Desktop        | Chrome    | Pass   |
+| Barchart1       |Desktop        | Chrome    | Pass   |
+| Barchart2       |Desktop        | Chrome    | Pass   |
+| Line Graph1     |Desktop        | Chrome    | Pass   |
+| Row Chart1      |Desktop        | Chrome    | Pass   |
+| Button1         |Desktop        | Chrome    | Pass   |
 
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+
+
+Sample test script:
+
+* Test all dropdown menus to ensure they display all values and filter the data correctly.
+* Use reset button to refresh the data.
+* Use scroll button to scroll back to top.
+* Ensure scroll button disappears when at top of screen.
+* Ensure scroll button appears when user starts to scroll.
+
+* On mobile device ensure all charts can be scrolled from left to right.
+* Ensure Information Icon is correctly displayed.
+* Ensure Info Tooltip appears and disappears as expected.
+
+* Filter on chart value and ensure all other charts update with filtered data.
+* Use reset button to refresh the data.
+
+* Choose a weekday on day of week row chart and ensure the timeline chart only displys this day.
+* Use reset button to refresh the data.
+
+* 
+
+* Test external HTML links in the footer to ensure they function and open in a new webpage.
+
+
+## Issues Noticed:
+
+When the user zooms on the line chart the scroll to the right feature is no longer available. The user would have to zoom back out again
+so that the scroll across feature is available again. This is the functionality available and acts as expected.
+
+On Ipad there is a empty space to the right of the incident counters as the station area chart stacks under the 
+counters. If the station area chart was aligned to the right of the counters it would look squashed as only part of the chart would be visible
+and so this appearance was left as it is.
+
 
 
 Go to the "Contact Us" page
