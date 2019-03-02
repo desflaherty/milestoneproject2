@@ -62,14 +62,14 @@ section {
    padding-top: 10px;
 }
 
-.chart-outer-container {
+.chart-container {
    overflow: hidden;
    border: 1px solid #000;
 }
 
 
 @media (max-width: 1165px) {
-   .chart-outer-container {
+   .chart-container {
       overflow-x: scroll;
    }
 }
@@ -166,12 +166,12 @@ section {
 
 /*--------CHART SETTINGS---------------*/
 
-.info-container-hidden {  /*in jquery for question icon on hover: remove description-container-hidden and add description-container-show*/
+.info-container-hidden {  /*JQuery hides Tooltip for top 10 Incidents */
    display: none;
    font-size: 12px;
 }
 
-.info-container-show {  /*in jquery for question icon on hover: remove description-container-hidden and add description-container-show*/
+.info-container-show {  /*JQuery shows tooltip for top 10 Incidents*/
    position: absolute;
    background-color: #000;
    display: block;

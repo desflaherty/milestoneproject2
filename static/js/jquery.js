@@ -20,7 +20,7 @@ $(document).ready(function(){
 
 });
 
- /*Info tooltip Tooltip*/
+ /*TOOLTIP INFO CHARTS*/
     $(".fa-info-circle").mouseenter(function() {
         $(this).siblings().addClass("info-container-show");
         $(this).siblings().removeClass("info-container-hidden");
