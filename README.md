@@ -184,31 +184,24 @@ disappear from being displayed on top of the chart.
 The D3 tooltips don't appear on mobile as rollover functionality is not available. As these charts were developed for deskttop this functionality is
 as expected.
 
+## Deployment:
+The project was continuously pushed to github commiting any changes through the development stages.
+A new respository was created in github and initiallized in git at the start of the project.
+The finished project was deployed to github pages through the settings - master branch link
+https://desflaherty.github.io/milestoneproject2
 
-Go to the "Contact Us" page
-Try to submit the empty form and verify that an error message about the required fields appears
-Try to submit the form with an invalid email address and verify that a relevant error message appears
-Try to submit the form with all inputs valid and verify that a success message appears.
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
+The files used for the development are located at https://github.com/desflaherty/milestoneproject2
 
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
 
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+To run the code locally clone the repository and run the index.html page.
 
-Deployment
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+## Credits:
 
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
+* The code used for the reset charts button was located at http://bl.ocks.org/d3noob/6584483
+* The code used for the JQuery back to top button was located at https://www.templatemonster.com/blog/back-to-top-button-css-jquery/
 
-Different values for environment variables (Heroku Config Vars)?
-Different configuration files?
-Separate git branch?
-In addition, if it is not obvious, you should also describe how to run your code locally.
 
-Credits
-Content
-The text for section Y was copied from the Wikipedia article Z
-Media
-The photos used in this site were obtained from ...
-Acknowledgements
-I received inspiration for this project from X
+## Content
+
+* The Database used in the project was obtained from https://data.gov.ie/dataset/fire-brigade-and-ambulance
+* Licensed under creative commons attribution 4.0 https://creativecommons.org/licenses/by/4.0/
