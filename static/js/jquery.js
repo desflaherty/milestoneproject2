@@ -20,7 +20,7 @@ $(document).ready(function(){
 
 });
 
- /*TOP 10 Incident Types Tooltip*/
+ /*Info tooltip Tooltip*/
     $(".fa-info-circle").mouseenter(function() {
         $(this).siblings().addClass("info-container-show");
         $(this).siblings().removeClass("info-container-hidden");
