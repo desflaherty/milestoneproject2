@@ -1,4 +1,7 @@
-Your Project's Name
+
+# Project Name: Dashboard showing Fire Brigade Call Out Activity in the Dublin Area.
+
+
 One or two paragraphs providing an overview of your project.
 
 Essentially, this part is your sales pitch.
