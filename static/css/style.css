@@ -37,8 +37,8 @@ section {
 }
 
 .header-text {
-   margin-top: 30px;
-   margin-bottom: 15px;
+   margin-top: 20px;
+   margin-bottom: 0px;
   
 }
 
@@ -50,7 +50,6 @@ section {
 
 .counter-menu {
    background-color: rgba(255, 255, 255, 0.8);
-  
 }
 
 
@@ -150,13 +149,13 @@ section {
 /*/////////////////////Incident Counter///////////////////////////////////////*/
 
 .dc-data-count-l {
-   font-size: 55px;
+   font-size: 50px;
    padding: 16px 115px;
    color: #ff6000;
 }
 
 .dc-data-count-s {
-   font-size: 30px;
+   font-size: 25px;
    color: #0f4d93;
 }
 

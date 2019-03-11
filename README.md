@@ -76,7 +76,7 @@ to the project or the data was of a poor quality with a lot of missing values co
 * A reset button to allow the user to reset the filters chosen.
 * A back to top button to scroll the page back to the top for easier navigation.
 * JQuery Tooltips are used for two graphs to explain how they can be used correctly or for interpretation of the information. The
-* charts with JQuery Tooltips are the 'Incident by Time' and 'Top 10 Incidnet by description'. Other charts are self-explanatory so no Tooltip is used.
+  charts with JQuery Tooltips are the 'Incident by Time' and 'Top 10 Incidnet by description'. Other charts are self-explanatory so no Tooltip is used.
 * Other charts use D3 tooltips and have information dispalyed in a easily interpreted way.
 
 # # Features Left to Implement
