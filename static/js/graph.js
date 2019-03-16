@@ -342,6 +342,6 @@ function show_fire_by_day(ndx) {
         .margins({ top: 10, right: 50, bottom: 30, left: 50 })
         .dimension(dayOfWeek)
         .group(dayOfWeekGroup)
-        .title(function(d) { return ((d.value / 38552) * 100).toFixed(2) + "% - " + d.value + " Reported Incidents" + " on " + d.key; })
+        .title(function(d) { return ((d.value / 38552) * 100).toFixed(2) + "% - " + d.value + " Reported Incidents" + " on a" + d.key; })
         .transitionDuration(500); //how quickly chart animates when filtered
 }
